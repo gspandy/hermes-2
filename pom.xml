@@ -529,48 +529,19 @@
 
     </dependencyManagement>
 
-    <distributionManagement>
-        <repository>
-            <id>ofpay-releases</id>
-            <name>releases</name>
-            <url>http://nexus.dev.ofpay.com/nexus/content/repositories/releases</url>
-        </repository>
+    <!--<distributionManagement>-->
+        <!--<repository>-->
+            <!--<id>ofpay-releases</id>-->
+            <!--<name>releases</name>-->
+            <!--<url>http://nexus.dev.ofpay.com/nexus/content/repositories/releases</url>-->
+        <!--</repository>-->
 
-        <snapshotRepository>
-            <id>ofpay-snapshots</id>
-            <name>snapshots</name>
-            <url>http://nexus.dev.ofpay.com/nexus/content/repositories/snapshots</url>
-        </snapshotRepository>
-    </distributionManagement>
-
-    <repositories>
-        <repository>
-            <id>ofpay-snapshots</id>
-            <name>intranet public snapshots</name>
-            <url>http://nexus.dev.ofpay.com/nexus/content/repositories/snapshots</url>
-            <snapshots>
-                <updatePolicy>always</updatePolicy>
-            </snapshots>
-        </repository>
-
-        <repository>
-            <id>central</id>
-            <url>http://nexus.dev.ofpay.com/nexus/content/groups/public</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
-
-    <pluginRepositories>
-        <pluginRepository>
-            <id>central</id>
-            <url>http://nexus.dev.ofpay.com/nexus/content/groups/public</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </pluginRepository>
-    </pluginRepositories>
+        <!--<snapshotRepository>-->
+            <!--<id>ofpay-snapshots</id>-->
+            <!--<name>snapshots</name>-->
+            <!--<url>http://nexus.dev.ofpay.com/nexus/content/repositories/snapshots</url>-->
+        <!--</snapshotRepository>-->
+    <!--</distributionManagement>-->
 
     <modules>
         <module>FourthPay-hermes-bean</module>
