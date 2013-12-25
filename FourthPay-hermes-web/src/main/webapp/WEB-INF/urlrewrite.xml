@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE urlrewrite PUBLIC "-//tuckey.org//DTD UrlRewrite 2.6//EN"
+        "http://tuckey.org/res/dtds/urlrewrite2.6.dtd">
+
+<urlrewrite>
+	<rule>
+		<note>kalei.html</note>
+		<from>^/kalei\.((html)|(htm))$</from>
+		<to>/static/kalei.jsp</to>
+	</rule>
+
+    <rule>
+        <note>join.html</note>
+        <from>^/join\.((html)|(htm))$</from>
+        <to>/static/join.jsp</to>
+    </rule>
+
+    <rule>
+        <note>help.html</note>
+        <from>^/help\.((html)|(htm))$</from>
+        <to>/static/help.jsp</to>
+    </rule>
+
+    <rule>
+        <note>about.html</note>
+        <from>^/about\.((html)|(htm))$</from>
+        <to>/static/about.jsp</to>
+    </rule>
+
+	<outbound-rule>
+		<note>
+			The outbound-rule specifies that when response.encodeURL is
+			called (if you are using JSTL c:url) the url /rewrite-status
+			will be rewritten to /test/status/.
+
+			The above rule and this outbound-rule means that end users
+			should never see the url /rewrite-status only /test/status/
+			both in thier location bar and in hyperlinks in your pages.
+		</note>
+		<from>/rewrite-status</from>
+		<to>/test/status/</to>
+	</outbound-rule>
+
+</urlrewrite>
+

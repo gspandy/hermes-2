@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hermes.app.persistence.UserAppMapper">
+
+    <update id="update" parameterType="com.hermes.app.domain.UserApp">
+        UPDATE app_user
+        <set>
+            <if test="empNo != null and empNo != ''">emp_no=#{empNo},</if>
+            <if test="locked != null">locked=#{locked},</if>
+            <if test="lastIp != null and lastIp != ''">last_ip=#{lastIp},</if>
+            <if test="lastTime != null and lastTime != ''">last_time=#{lastTime},</if>
+        </set>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+
+    <insert id="insert" parameterType="com.hermes.app.domain.UserApp">
+        <selectKey keyProperty="id" resultType="int" order="BEFORE">
+            <if test="_databaseId == 'Oracle'">
+                select app_user_seq.nextval as ID from dual
+            </if>
+            <if test="_databaseId == 'H2'">
+                select 0 from dual
+            </if>
+        </selectKey>
+        INSERT INTO app_user (id, emp_no) VALUES (#{id}, #{empNo})
+    </insert>
+
+</mapper>
+

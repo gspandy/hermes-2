@@ -1,0 +1,4 @@
+label.error{display: none;float:none!important;padding: 0 5px;width:auto!important;color:#ef3230;}
+.accInfo p .accInput.error{border: 1px solid #ef3230;}
+.accInfo .submCon span.gray {width: 280px;}
+textarea.error{border: 1px solid #ef3230;}

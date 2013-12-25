@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hermes.app.persistence.pay.bill.BillMapper">
+    <select id="selectBillByCodeInOneMonth" parameterType="user"
+            resultType="bill">
+        <![CDATA[
+            select t.*
+              from TB_RCVCARD_BILL t
+             where t.usercode = #{usercode}
+               and t.ordertime >=
+                   to_date(to_char(sysdate - 30, 'yyyy/MM/dd'), 'yyyy/MM/dd')
+             order by t.ordertime desc
+        ]]>
+    </select>
+</mapper>
+

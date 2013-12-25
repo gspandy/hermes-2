@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hermes.app.persistence.main.cash.ApplyMapper">
+
+    <select id="selectUserCountByCode" resultType="userCount">
+        select merleftmoney,leftcredit from salecount where userid = #{usercode}
+    </select>
+
+    <select id="selectRate" resultType="java.math.BigDecimal">
+        select c.feerate
+          from TB_Pay_UserAccountInfo a,
+               TB_Pay_UserCashRate b,
+               TB_Pay_UserCashBankRateSet c
+         where a.bankcode = b.bankcode
+           and a.usercode = b.merchantcode
+           and b.bankcode = c.bankcode
+           and b.feegradecode = c.feegradecode
+           and b.datastat = 1
+           and c.datastatus = 1
+           and a.datastat in (2, 5)
+           and a.bankcode = #{bankcode}
+           and a.usercode = #{usercode}
+           and rownum = 1
+    </select>
+
+    <update id="updateLeftMoney">
+        UPDATE salecount
+           SET merleftmoney = NVL(merleftmoney,0) - #{deduMoney}
+         WHERE userid = #{usercode}
+           <![CDATA[AND NVL(merleftmoney,0) >= #{deduMoney}
+        ]]>
+    </update>
+    
+    <insert id="insertCashOrder" >
+        insert into TB_PAY_USERCASHORDER
+              (cashorderno,
+               usercode,
+               username,
+               applymoney,
+               applytime,
+               applytype,
+               datastat,
+               dealstat,
+               ordersource,
+               accounttype,
+               bankcode,
+               bankname,
+               accountusername,
+               accountno,
+               merleftmoney,
+               merleftmoneyafter,
+               feerate,
+               commision,
+               Approvetime,
+               Approvemanname,
+               Approveinfo)
+            values
+            (
+                #{cashorderno},
+                #{usercode},
+                #{username},
+                #{applyMoney},
+                sysdate,
+                #{applytype},
+                #{datastat},
+                #{dealstat},
+                #{ordersource},
+                #{accounttype},
+                #{bankcode},
+                #{bankname},
+                #{accountusername},
+                #{accountno},
+                #{merleftmoney},
+                #{merleftmoneyafter},
+                #{feerate},
+                #{commision},
+                sysdate,
+                #{approvemanname},
+                #{approveinfo}
+            )
+    </insert>
+
+    <select id="selectSeq" resultType="String">
+        select seq_for_pay_usercashorder.nextval as cashorderno from dual
+    </select>
+</mapper>

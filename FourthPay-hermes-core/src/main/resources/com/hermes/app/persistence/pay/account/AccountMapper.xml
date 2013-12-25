@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hermes.app.persistence.pay.account.AccountMapper">
+    <select id="selectStatsByCode" resultType="account">
+        <![CDATA[
+        select ordercount, totalmoney, succordercount, succtotalmoney
+          from (select nvl(count(t1.billid),0) as ordercount,
+                        nvl(sum(t1.faceval),0) as totalmoney
+                   from tb_rcvcard_bill t1
+                  where t1.usercode = #{usercode}
+                    and t1.ordertime >= to_date(to_char(sysdate, 'yyyy/MM/dd'), 'yyyy/MM/dd')
+                    and t1.ordertime <= to_date(to_char(sysdate + 1, 'yyyy/MM/dd'), 'yyyy/MM/dd')
+        ) d1,
+                (select nvl(count(t2.billid),0) as succordercount,
+                         nvl(sum(t2.accaddval),0) as succtotalmoney
+                   from tb_rcvcard_bill t2
+                  where (t2.state = '2' or t2.state = '3' or t2.state = '4')
+                    and t2.usercode = #{usercode}
+                    and t2.ordertime >= to_date(to_char(sysdate, 'yyyy/MM/dd'), 'yyyy/MM/dd')
+                    and t2.ordertime <= to_date(to_char(sysdate + 1, 'yyyy/MM/dd'), 'yyyy/MM/dd')
+        ) d2
+        ]]>
+    </select>
+
+    <update id="updatePsw">
+        update saleuser t
+           <set>
+            <!-- 登录密码 -->
+            <if test="logpswNew != null and logpswNew != ''">
+                logpsw = #{logpswNew},
+                logpwdtime = sysdate,
+                psw = #{psw}
+            </if>
+            <!-- 提现密码 -->
+            <if test="paypwsNew != null and paypwsNew != ''">
+                paypws = #{paypwsNew}
+            </if>
+            <!-- 交易密码 -->
+            <if test="userfaxNew != null and userfaxNew != ''">
+                userfax = #{userfaxNew},
+                buspwdtime = sysdate
+            </if>
+           </set>
+         where t.usercode = #{usercode}
+    </update>
+
+    <update id="updateAccountInfo">
+        update  saleuser t1
+          <set>
+              <if test="usercell != null and usercell != ''">
+                t1.usercell = #{usercell},
+              </if>
+              <if test="email != null and email != ''">
+                t1.email = #{email},
+              </if>
+              <if test="usertel != null and usertel != ''">
+                t1.usertel = #{usertel},
+              </if>
+              <if test="qq != null and qq != ''">
+                t1.qq = #{qq}
+              </if>
+          </set>
+          where t1.usercode = #{usercode}
+    </update>
+
+    <update id="updateAccountAddInfo">
+        update  tb_pay_useraddedinfo t2
+        <set>
+            <if test="company != null and company != ''">
+              t2.company = #{company},
+            </if>
+            <if test="siteurl != null and siteurl != ''">
+              t2.siteurl = #{siteurl},
+            </if>
+            <if test="siteicp != null and siteicp != ''">
+              t2.siteicp = #{siteicp},
+            </if>
+            <if test="companydes != null and companydes != ''">
+              t2.companydes = #{companydes}
+            </if>
+        </set>
+        where t2.usercode = #{usercode}
+    </update>
+
+    <select id="selectLatestAnnounce" resultType="announce">
+        select *
+          from ( select t.*
+                   from tb_rcvcrad_announcement t
+               order by t.createtime desc
+               )
+         where rownum = 1
+    </select>
+
+    <select id="selectAnnounces" resultType="announce">
+        select t.*
+           from tb_rcvcrad_announcement t
+        order by t.createtime desc
+    </select>
+</mapper>

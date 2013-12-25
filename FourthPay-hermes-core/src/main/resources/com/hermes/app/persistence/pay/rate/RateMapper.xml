@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hermes.app.persistence.pay.rate.RateMapper">
+    <select id="selectRatesByUsercode" parameterType="String"
+            resultType="Rate">
+           select distinct  c.corpname as cardName, m.cusrate as rate
+           from tb_rcvcard_merfee m, tb_rcvcard_cardcatlg c
+           where m.usercode=#{userCode}
+           and m.cusrate is not null
+           and substr(m.cardcode,0,4)=substr(c.cardcode,0,4)
+    </select>
+</mapper>
+

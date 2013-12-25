@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hermes.app.persistence.UserProjectMapper">
+
+    <insert id="insert" parameterType="com.hermes.app.domain.UserProject">
+        <selectKey keyProperty="id" resultType="int" order="BEFORE">
+            <if test="_databaseId == 'Oracle'">
+                select user_project_seq.nextval as ID from dual
+            </if>
+            <if test="_databaseId == 'H2'">
+                select 0 from dual
+            </if>
+        </selectKey>
+        INSERT INTO user_project (user_id, project_id, role) VALUES (#{userId}, #{projectId}, #{role})
+    </insert>
+
+</mapper>
+

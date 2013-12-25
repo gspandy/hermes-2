@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hermes.app.persistence.main.cash.OrderMapper">
+    <sql id="orderColumns">
+        t.cashorderno,
+        t.applytime,
+        t.applymoney,
+        t.applytype,
+        t.accounttype,
+        t.bankname,
+        t.commision,
+        t.merleftmoney,
+        t.merleftmoneyafter,
+        t.accountusername,
+        t.accountno,
+        t.datastat,
+        t.dealstat,
+        t.remarkinfo
+    </sql>
+    <select id="selectOrders" parameterType="com.hermes.app.form.cash.OrderForm"
+            resultType="order">
+        SELECT *
+        FROM
+        (
+        SELECT b.*, rownum rn
+        FROM
+        (
+
+            SELECT <include refid="orderColumns"/>
+            FROM TB_PAY_USERCASHORDER t
+
+            <where>
+                t.usercode = #{usercode}
+                <if test="cashOrderNo != null and cashOrderNo != '' ">AND cashorderno=#{cashOrderNo}</if>
+                <if test="applyTimeStart != null and applyTimeStart != '' ">
+                    <![CDATA[AND t.applytime>=to_date(#{applyTimeStart},'yyyy-MM-dd HH24:MI:SS')]]>
+                </if>
+                <if test="applyTimeEnd != null and applyTimeEnd != '' ">
+                    <![CDATA[AND t.applytime<=to_date(#{applyTimeEnd},'yyyy-MM-dd HH24:MI:SS')+1]]>
+                </if>
+                <if test="stat != null and stat != '' ">
+                    <if test="stat == '0'.toString() ">
+                        <!--处理中-->
+                        AND (t.datastat=1 OR (t.datastat=2 AND (t.dealstat=0 OR t.dealstat=1)))
+                    </if>
+                    <if test="stat == '1'.toString() ">
+                        <!--成功-->
+                        AND t.datastat=2 AND t.dealstat=2
+                    </if>
+                    <if test="stat == '2'.toString() ">
+                        <!--失败-->
+                        AND (t.datastat=3 OR (t.datastat=2 AND t.dealstat=3))
+                    </if>
+                </if>
+            </where>
+        ORDER BY ${sortInfo}
+        ) b
+        WHERE  <![CDATA[rownum <= #{iDisplayStart} + #{iDisplayLength}]]>
+        ) bl
+        WHERE <![CDATA[bl.rn > #{iDisplayStart}]]>
+    </select>
+
+    <select id="countOrders" parameterType="com.hermes.app.form.cash.OrderForm"
+            resultType="int">
+        SELECT COUNT(1)
+        FROM TB_PAY_USERCASHORDER t
+
+        <where>
+            t.usercode = #{usercode}
+
+            <choose>
+                <when test="cashOrderNo != null and cashOrderNo != '' ">
+                    AND cashorderno=#{cashOrderNo}
+                </when>
+                <otherwise>
+                    <if test="applyTimeStart != null and applyTimeStart != '' ">
+                        <![CDATA[AND t.applytime>=to_date(#{applyTimeStart},'yyyy-MM-dd HH24:MI:SS')]]>
+                    </if>
+                    <if test="applyTimeEnd != null and applyTimeEnd != '' ">
+                        <![CDATA[AND t.applytime<=to_date(#{applyTimeEnd},'yyyy-MM-dd HH24:MI:SS')+1]]>
+                    </if>
+                    <if test="stat != null and stat != '' ">
+                        <if test="stat == '0'.toString() ">
+                            <!--处理中-->
+                            AND (t.datastat=1 OR (t.datastat=2 AND (t.dealstat=0 OR t.dealstat=1)))
+                        </if>
+                        <if test="stat == '1'.toString() ">
+                            <!--成功-->
+                            AND t.datastat=2 AND t.dealstat=2
+                        </if>
+                        <if test="stat == '2'.toString() ">
+                            <!--失败-->
+                            AND (t.datastat=3 OR (t.datastat=2 AND t.dealstat=3))
+                        </if>
+                    </if>
+                </otherwise>
+            </choose>
+        </where>
+    </select>
+</mapper>

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hermes.app.persistence.pay.order.PayOrderMapper">
+    <select id="selectBackCodeList" resultType="CashBankInfo">
+        select bankcode,bankname from TB_Pay_BankCode where choiceflag=1 order by bankname desc
+    </select>
+
+    <select id="selectPayOrders" parameterType="com.hermes.app.form.order.PayOrderForm"
+            resultType="PayOrder">
+        SELECT *
+        FROM
+        (
+        SELECT b.*, rownum rn
+        FROM
+        (
+        select usercode,
+        orderno,
+        oforderno,
+        nvl(bankorderno, '') as bankorderno,
+        transactionid,
+        ordermoney,
+        commission,
+        merchantretmoney,
+        merleftmoney,
+        paymethodname,
+        dealstat,
+        to_char(dealtime, 'yyyy-mm-dd hh24:mi:ss') as dealtime,
+        refundstate,
+        refundamount,
+        to_char(refundopttime, 'yyyy-mm-dd hh24:mi:ss') as refundopttime,
+        to_char(ordertime, 'yyyy-mm-dd hh24:mi:ss') as ordertime
+        from TB_PayOrderInfo
+        where usercode=#{usercode}
+        and ordertime &gt;= to_date(#{startTime},'yyyy-mm-dd HH24:MI:SS')
+        and ordertime &lt;= to_date(#{endTime} ,'yyyy-mm-dd HH24:MI:SS')
+        <if test="null != dealstat and dealstat != ''">
+            and dealstat = #{dealstat}
+        </if>
+        <if test="null != paymethodcode and paymethodcode != ''">
+            and paymethodcode = #{paymethodcode}
+        </if>
+        <if test="null != orderno and orderno != ''">
+            and orderno = #{orderno}
+        </if>
+        <if test="null != bankorderno  and bankorderno != ''">
+            and bankorderno = #{bankorderno}
+        </if>
+        <if test="null != transactionid  and transactionid != ''">
+            and transactionid = #{transactionid}
+        </if>
+        ORDER BY ${sortInfo}
+        ) b
+        WHERE  rownum &lt;= #{iDisplayStart} + #{iDisplayLength}
+        ) bl
+        WHERE bl.rn &gt; #{iDisplayStart}
+    </select>
+
+    <select id="countPayOrders" parameterType="com.hermes.app.form.order.PayOrderForm"
+            resultType="int">
+        select count(*)
+        from TB_PayOrderInfo
+        where usercode=#{usercode}
+        and ordertime &gt;= to_date(#{startTime},'yyyy-mm-dd HH24:MI:SS')
+        and ordertime &lt;= to_date(#{endTime} ,'yyyy-mm-dd HH24:MI:SS')
+        <if test="null != dealstat and dealstat != ''">
+            and dealstat = #{dealstat}
+        </if>
+        <if test="null != paymethodcode and paymethodcode != ''">
+            and paymethodcode = #{paymethodcode}
+        </if>
+        <if test="null != orderno and orderno != ''">
+            and orderno = #{orderno}
+        </if>
+        <if test="null != bankorderno  and bankorderno != ''">
+            and bankorderno = #{bankorderno}
+        </if>
+        <if test="null != transactionid  and transactionid != ''">
+            and transactionid = #{transactionid}
+        </if>
+    </select>
+
+    <select id="queryExportPayOrders" parameterType="com.hermes.app.form.order.PayOrderForm"
+            resultType="PayOrder">
+        select usercode,
+        orderno,
+        oforderno,
+        nvl(bankorderno, '') as bankorderno,
+        transactionid,
+        ordermoney,
+        commission,
+        merchantretmoney,
+        merleftmoney,
+        paymethodname,
+        dealstat,
+        to_char(dealtime, 'yyyy-mm-dd hh24:mi:ss') as dealtime,
+        refundstate,
+        refundamount,
+        to_char(refundopttime, 'yyyy-mm-dd hh24:mi:ss') as refundopttime,
+        to_char(ordertime, 'yyyy-mm-dd hh24:mi:ss') as ordertime
+        from TB_PayOrderInfo
+        where usercode=#{usercode}
+        and ordertime &gt;= to_date(#{startTime},'yyyy-mm-dd HH24:MI:SS')
+        and ordertime &lt;= to_date(#{endTime} ,'yyyy-mm-dd HH24:MI:SS')
+        <if test="null != dealstat and dealstat != ''">
+            and dealstat = #{dealstat}
+        </if>
+        <if test="null != paymethodcode and paymethodcode != ''">
+            and paymethodcode = #{paymethodcode}
+        </if>
+        <if test="null != orderno and orderno != ''">
+            and orderno = #{orderno}
+        </if>
+        <if test="null != bankorderno  and bankorderno != ''">
+            and bankorderno = #{bankorderno}
+        </if>
+        <if test="null != transactionid  and transactionid != ''">
+            and transactionid = #{transactionid}
+        </if>
+    </select>
+</mapper>
+

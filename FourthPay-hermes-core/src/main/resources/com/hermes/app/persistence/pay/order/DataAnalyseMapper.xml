@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hermes.app.persistence.pay.order.DataAnalyseMapper">
+    <select id="queryRcvCardStatic" parameterType="com.hermes.app.form.order.DataAnalyseForm"
+            resultType="DataAnalyseStatic">
+        select cardname, count(billid) as totalcnt, sum(faceval) totalfaceval,
+        count(case when state='2' or state='3' or state='4' then billid end) succcnt,
+        sum(case when state='2' or state='3' or state='4' then retvalue else 0 end) as succfaceval,
+        sum(case when state='2' or state='3' or state='4' then nvl(accaddval,0) else 0 end) as succaccaddval
+        from tb_rcvcard_bill
+        where usercode = #{usercode}
+        and ordertime &gt;= to_date(#{startTime},'yyyy-mm-dd HH24:MI:SS')
+        and ordertime &lt;= to_date(#{endTime} ,'yyyy-mm-dd HH24:MI:SS')
+        <if test="null != chargeStartTime and chargeStartTime != ''">
+            and chargeendtime &gt;= to_date(#{chargeStartTime},'yyyy-mm-dd HH24:MI:SS')
+        </if>
+        <if test="null != chargeEndTime and chargeEndTime != ''">
+            and chargeendtime &lt;= to_date(#{chargeEndTime} ,'yyyy-mm-dd HH24:MI:SS')
+        </if>
+        group by cardname
+        order by totalcnt desc
+    </select>
+
+    <select id="countRcvCardStatic" parameterType="com.hermes.app.form.order.DataAnalyseForm"
+            resultType="int">
+        select count(*)
+        from
+        (
+        select cardname, count(billid) as totalcnt, sum(faceval) totalfaceval,
+        count(case when state='2' or state='3' or state='4' then billid end) succcnt,
+        sum(case when state='2' or state='3' or state='4' then retvalue else 0 end) as succfaceval,
+        sum(case when state='2' or state='3' or state='4' then nvl(accaddval,0) else 0 end) as succaccaddval
+        from tb_rcvcard_bill
+        where usercode = #{usercode}
+        and ordertime &gt;= to_date(#{startTime},'yyyy-mm-dd HH24:MI:SS')
+        and ordertime &lt;= to_date(#{endTime} ,'yyyy-mm-dd HH24:MI:SS')
+        <if test="null != chargeStartTime and chargeStartTime != ''">
+            and chargeendtime &gt;= to_date(#{chargeStartTime},'yyyy-mm-dd HH24:MI:SS')
+        </if>
+        <if test="null != chargeEndTime and chargeEndTime != ''">
+            and chargeendtime &lt;= to_date(#{chargeEndTime} ,'yyyy-mm-dd HH24:MI:SS')
+        </if>
+        group by cardname
+        order by totalcnt desc
+        )
+    </select>
+</mapper>
+

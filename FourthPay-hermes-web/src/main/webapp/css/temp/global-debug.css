@@ -1,0 +1,2915 @@
+/*! define benefitprod/asset/1.1.2/global-debug.css */
+/* alice.asset 样式模块 */
+
+@charset "utf-8";
+
+/* ----------------------------------- alice组件 -- */
+
+/*! block alice/base/1.0.0/base-debug.css */
+/* alice.base 样式模块 */
+
+@charset "utf-8";
+
+/* 防止用户自定义背景颜色对网页的影响，添加让用户可以自定义字体 */
+html {
+    color:#000;background:#fff;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+}
+
+/* 内外边距通常让各个浏览器样式的表现位置不同 */
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td,hr,button,article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section {
+    margin:0;padding:0;
+}
+
+/* 重设 HTML5 标签, IE 需要在 js 中 createElement(TAG) */
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section { 
+    display:block;
+}
+
+/* HTML5 媒体文件跟 img 保持一致 */
+audio,canvas,video {
+    display: inline-block;*display: inline;*zoom: 1;
+}
+
+/* 要注意表单元素并不继承父级 font 的问题 */
+body,button,input,select,textarea {
+    font:12px/1.5 tahoma,arial,"Hiragino Sans GB","Microsoft Yahei",\5b8b\4f53;
+}
+input,select,textarea {
+    font-size:100%;
+}
+
+/* 去掉各Table  cell 的边距并让其边重合 */
+table {
+    border-collapse:collapse;border-spacing:0;
+}
+
+/* IE bug fixed: th 不继承 text-align*/
+th {
+    text-align:inherit;
+}
+
+/* 去除默认边框 */
+fieldset,img {
+    border:0;
+}
+
+/* ie6 7 8(q) bug 显示为行内表现 */
+iframe {
+    display:block;
+}
+
+/* 去掉 firefox 下此元素的边框 */
+abbr,acronym {
+    border:0;font-variant:normal;
+}
+
+/* 一致的 del 样式 */
+del {
+    text-decoration:line-through;
+}
+
+address,caption,cite,code,dfn,em,th,var {
+    font-style:normal;
+    font-weight:500;
+}
+
+/* 去掉列表前的标识, li 会继承 */
+ol,ul {
+    list-style:none;
+}
+
+/* 对齐是排版最重要的因素, 别让什么都居中 */
+caption,th {
+    text-align:left;
+}
+
+/* 来自yahoo, 让标题都自定义, 适应多个系统应用 */
+h1,h2,h3,h4,h5,h6 {
+    font-size:100%;
+    font-weight:500;
+}
+
+q:before,q:after {
+    content:'';
+}
+
+/* 统一上标和下标 */
+sub, sup {
+    font-size: 75%; line-height: 0; position: relative; vertical-align: baseline;
+}
+sup { top: -0.5em; }
+sub { bottom: -0.25em; }
+
+/* 让链接在 hover 状态下显示下划线 */
+a:hover {
+    text-decoration:underline;
+}
+
+/* 默认不显示下划线，保持页面简洁 */
+ins,a {
+    text-decoration:none;
+}
+
+/* 清理浮动 */
+.fn-clear:after {
+    visibility:hidden;
+    display:block;
+    font-size:0;
+    content:" ";
+    clear:both;
+    height:0;
+}
+.fn-clear {
+    zoom:1; /* for IE6 IE7 */
+}
+
+/* 隐藏, 通常用来与 JS 配合 */
+body .fn-hide {
+    display:none;
+}
+
+/* 设置内联, 减少浮动带来的bug */
+.fn-left,.fn-right {
+    display:inline;
+}
+.fn-left {
+    float:left;
+}
+.fn-right {
+    float:right;
+}
+
+/* 单行文字溢出时出现省略号，需设定宽度 */ 
+.fn-text-overflow {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* 简单的渐变 */
+.fn-linear {
+    background: -webkit-gradient(linear, left top, left bottom, from(#fcfcfc), to(#f1f1f1));
+    background: -moz-linear-gradient(top, #fcfcfc, #f1f1f1);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fcfcfc', endColorstr='#f1f1f1');
+    background:-o-linear-gradient(top, #fcfcfc, #f1f1f1);
+    background: linear-gradient(top, #fcfcfc, #f1f1f1);
+}
+
+/* 浅色的渐变 */
+.fn-linear-light {
+    background: -webkit-gradient(linear, left top, left bottom, from(#fcfcfc), to(#f9f9f9));
+    background: -moz-linear-gradient(top, #fcfcfc, #f9f9f9);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fcfcfc', endColorstr='#f9f9f9');
+    background:-o-linear-gradient(top, #fcfcfc, #f9f9f9);
+    background: linear-gradient(top, #fcfcfc, #f9f9f9);
+}
+
+/* 人民币符号 */
+.fn-rmb {
+    font-family: arial;
+    font-style: normal;
+    padding-right: 4px;
+}
+
+/* chrome 下字体过小的问题 */
+.fn-webkit-adjust {
+    -webkit-text-size-adjust: none;
+}
+/*! endblock alice/base/1.0.0/base-debug.css */
+
+/*! block alice/grid/1.0.0/grid-debug.css */
+/* alice.grid 样式模块 */
+
+.ui-grid-1, .ui-grid-2, .ui-grid-3, .ui-grid-4, .ui-grid-5, .ui-grid-6, .ui-grid-7, .ui-grid-8, .ui-grid-9, .ui-grid-10, .ui-grid-11,.ui-grid-12, .ui-grid-13, .ui-grid-14, .ui-grid-15, .ui-grid-16, .ui-grid-17, .ui-grid-18, .ui-grid-19, .ui-grid-20, .ui-grid-21, .ui-grid-22, .ui-grid-23, .ui-grid-24, .ui-grid-25 {
+    margin: 0 10px 10px 0;
+    float:left;
+    display:inline;
+}
+
+.ui-grid-1 {width:30px;}
+.ui-grid-2 {width:70px;}
+.ui-grid-3 {width:110px;}
+.ui-grid-4 {width:150px;} /* 右侧推广位的宽度 */
+.ui-grid-5 {width:190px;} /* 左侧边栏的宽度 */
+.ui-grid-6 {width:230px;}
+.ui-grid-7 {width:270px;}
+.ui-grid-8 {width:310px;}
+.ui-grid-9 {width:350px;}
+.ui-grid-10 {width:390px;}
+.ui-grid-11 {width:430px;}
+.ui-grid-12 {width:470px;}
+.ui-grid-13 {width:510px;}
+.ui-grid-14 {width:550px;}
+.ui-grid-15 {width:590px;} /* 中央区域宽度 */
+.ui-grid-16 {width:630px;}
+.ui-grid-17 {width:670px;}
+.ui-grid-18 {width:710px;}
+.ui-grid-19 {width:750px;}
+.ui-grid-20 {width:790px;}
+.ui-grid-21 {width:830px;} /* 交易明细表区域的宽度 */
+.ui-grid-22 {width:870px;}
+.ui-grid-23 {width:910px;}
+.ui-grid-24 {width:950px;}
+.ui-grid-25 {width:990px;} /* 最大页面宽度 */
+ 
+.ui-grid-row {
+    margin-right: -10px;
+    zoom: 1;
+}
+.ui-grid-row:after {
+    clear: both;
+    content: " ";
+    display: block;
+    font-size: 0;
+    height: 0;
+    visibility: hidden;
+}
+/*! endblock alice/grid/1.0.0/grid-debug.css */
+
+/*! block alice/tab/1.0.0/tab-debug.css */
+/* alice.tab 样式模块 */
+
+@charset "utf-8";
+
+.ui-tab {
+    margin: 0;
+    padding: 0;
+}
+
+.ui-tab ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.ui-tab li {
+    list-style: none;
+    vertical-align: top;
+    position: relative;
+    top: 1px;
+}
+
+.ui-tab-items {
+    border-bottom: 1px solid #E5E5E5;
+    font-size: 14px;
+}
+
+.ui-tab-item {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    *margin-right: 4px;
+}
+
+.ui-tab-item a {
+    border-radius: 3px 3px 0 0;
+    background: #fff;
+    line-height: 32px;
+    height: 32px;
+    padding: 0 10px;
+    border: 1px solid #E5E5E5;
+    border-bottom: none;
+    color: #4D4D4D;
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    transition: background-color 0.4s ease-out, color 0.4s ease-out;
+}
+
+.ui-tab-item a,
+.ui-tab-item a:hover,
+.ui-tab-item a:active {
+    color: #4D4D4D;
+}
+
+.ui-tab-item-current a {
+    font-weight: bold;
+    height: 33px;
+}
+
+.ui-tab-item a:hover {
+    background: #f6f6f6;
+    text-decoration: none;
+}
+
+.ui-tab-item-current a:hover {
+    background: #fff;
+}
+/*! endblock alice/tab/1.0.0/tab-debug.css */
+
+/*! block alice/poptip/1.0.0/poptip-debug.css */
+/* alice.poptip 样式模块 */
+
+@charset "utf-8";
+
+.ui-poptip {
+    color: #DB7C22;
+    z-index: 101;
+    font-size: 12px;
+    line-height: 1.5;
+    zoom: 1;
+}
+
+.ui-poptip-shadow {
+    background-color: rgba(229, 169, 107, 0.15);
+    FILTER: progid:DXImageTransform.Microsoft.Gradient(startColorstr=#26e5a96b, endColorstr=#26e5a96b);
+    /* Math.floor(0.15 * 255).toString(16); */
+    border-radius: 2px;
+    padding: 2px;
+    zoom: 1;
+    _display: inline;
+}
+
+.ui-poptip-container {
+    position: relative;
+    background-color: #FFFCEF;
+    border: 1px solid #ffbb76;
+    border-radius: 2px;
+    padding: 5px 15px;
+    zoom: 1;
+    _display: inline;
+}
+
+.ui-poptip:after,
+.ui-poptip-shadow:after,
+.ui-poptip-container:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+
+a.ui-poptip-close {
+    position: absolute;
+    right: 3px;
+    top: 3px;
+    border: 1px solid #ffc891;
+    text-decoration: none;
+    border-radius: 3px;
+    width: 12px;
+    height: 12px;
+    font-family: tahoma;
+    color: #dd7e00;
+    line-height: 10px;
+    *line-height: 12px;
+    text-align: center;
+    font-size: 14px;
+    background: #ffd7af;
+    background: -webkit-gradient(linear, left top, left bottom, from(#FFF0E1), to(#FFE7CD));
+    background: -moz-linear-gradient(top, #FFF0E1, #FFE7CD);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFF0E1', endColorstr='#FFE7CD');
+    background: -o-linear-gradient(top, #FFF0E1, #FFE7CD);
+    background: linear-gradient(top, #FFF0E1, #FFE7CD);
+    overflow: hidden;
+}
+
+a.ui-poptip-close:hover {
+    border: 1px solid #ffb24c;
+    text-decoration: none;
+    color: #dd7e00;
+    background: #ffd7af;
+    background: -webkit-gradient(linear, left top, left bottom, from(#FFE5CA), to(#FFCC98));
+    background: -moz-linear-gradient(top, #FFE5CA, #FFCC98);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFE5CA', endColorstr='#FFCC98');
+    background: -o-linear-gradient(top, #FFE5CA, #FFCC98);
+    background: linear-gradient(top, #FFE5CA, #FFCC98);
+}
+
+.ui-poptip-arrow, .ui-poptip-arrow em, .ui-poptip-arrow span {
+    position: absolute;
+    font-size: 14px;
+    font-family: SimSun, Hiragino Sans GB;
+    font-style: normal;
+    line-height: 21px;
+    z-index: 10;
+    *zoom: 1;
+}
+
+.ui-poptip-arrow em {
+    color: #ffbb76;
+}
+
+.ui-poptip-arrow span {
+    color: #FFFCEF;
+    top: 0;
+    left: 0;
+}
+
+/* ui-poptip-arrow-10 */
+
+.ui-poptip-arrow-10 {
+    top: 6px;
+    left: -6px;
+}
+
+.ui-poptip-arrow-10 em {
+    top: 0;
+    left: -1px;
+}
+/* ui-poptip-arrow-1 */
+.ui-poptip-arrow-2 {
+    top: 6px;
+    right: 7px;
+}
+
+.ui-poptip-arrow-2 em {
+    top: 0;
+    left: 1px;
+}
+/* ui-poptip-arrow-11 */
+.ui-poptip-arrow-11 {
+    left: 14px;
+    top: -10px;
+    top: -9px\0;
+}
+
+.ui-poptip-arrow-11 em {
+    top: -1px;
+    left: 0;
+}
+/* ui-poptip-arrow-1 */
+.ui-poptip-arrow-1 {
+    right: 28px;
+    top: -10px;
+    top: -9px\0;
+}
+
+.ui-poptip-arrow-1 em {
+    top: -1px;
+    left: 0;
+}
+/* ui-poptip-arrow-7 */
+.ui-poptip-arrow-7 {
+    left: 14px;
+    bottom: 10px;
+}
+
+.ui-poptip-arrow-7 em {
+    top: 1px;
+    left: 0;
+}
+/* ui-poptip-arrow-5 */
+.ui-poptip-arrow-5 {
+    right: 28px;
+    bottom: 10px;
+}
+
+.ui-poptip-arrow-5 em {
+    top: 1px;
+    left: 0;
+}
+
+/* ie9 filter */
+:root .ui-poptip-shadow {
+    FILTER: none\9;
+}
+
+/* 蓝色 */
+.ui-poptip-blue {
+    color: #4d4d4d;
+}
+
+.ui-poptip-blue .ui-poptip-shadow {
+    background-color: rgba(0, 0, 0, 0.05);
+    FILTER: progid:DXImageTransform.Microsoft.Gradient(startColorstr=#0c000000, endColorstr=#0c000000);
+}
+
+.ui-poptip-blue .ui-poptip-container {
+    background-color: #F8FCFF;
+    border: 1px solid #B9C8D3;
+}
+
+.ui-poptip-blue .ui-poptip-arrow em {
+    color: #B9C8D3;
+}
+
+.ui-poptip-blue .ui-poptip-arrow span {
+    color: #F8FCFF;
+}
+/* 白色 */
+.ui-poptip-white {
+    color: #333;
+}
+
+.ui-poptip-white .ui-poptip-shadow {
+    background-color: rgba(0, 0, 0, 0.05);
+    FILTER: progid:DXImageTransform.Microsoft.Gradient(startColorstr=#0c000000, endColorstr=#0c000000);
+}
+
+.ui-poptip-white .ui-poptip-container {
+    background-color: #fff;
+    border: 1px solid #b1b1b1;
+}
+
+.ui-poptip-white .ui-poptip-arrow em {
+    color: #b1b1b1;
+}
+
+.ui-poptip-white .ui-poptip-arrow span {
+    color: #fff;
+}
+/*! endblock alice/poptip/1.0.0/poptip-debug.css */
+
+/*! block alice/tipbox/1.0.0/tipbox-debug.css */
+/* alice.tipbox 样式模块 */
+
+@charset "utf-8";
+
+.ui-tipbox {
+    position: relative;
+    zoom: 1;
+    font-size: 12px;
+    line-height: 22px;
+}
+
+.ui-tipbox .ui-tipbox-icon {
+    background: #fff;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 22px;
+    left: 48px;
+}
+
+.ui-tipbox-icon .iconfont {
+    font-size: 36px;
+    position: absolute;
+    top: -7px;
+    left: -7px;
+    width: 32px;
+    height: 32px;
+    line-height: 36px;
+    text-shadow: 1px 1px 0 #fff;
+}
+
+.ui-tipbox-message {
+    border: 1px solid #CBD7E2;
+    background: #E4F5FE;
+}
+
+.ui-tipbox-message .ui-tipbox-icon .iconfont {
+    color: #0483CF;
+}
+
+.ui-tipbox-success {
+    border: 1px solid #E1E1CA;
+    background: #EDFED0;
+}
+
+.ui-tipbox-success .ui-tipbox-icon .iconfont {
+    color: #20DC19;
+}
+
+.ui-tipbox-error {
+    background: #FDEEE9;
+    border: 1px solid #F6C7B8;
+}
+
+.ui-tipbox-error .ui-tipbox-icon .iconfont {
+    color: #FF4800;
+}
+
+.ui-tipbox-warning {
+    background: #FEFEA4;
+    border: 1px solid #E6C46A;
+}
+
+.ui-tipbox-warning .ui-tipbox-icon .iconfont {
+    color: #FFA700;
+}
+
+.ui-tipbox-question {
+    border: 1px solid #CBD7E2;
+    background: #E4F5FE;
+}
+
+.ui-tipbox-question .ui-tipbox-icon .iconfont {
+    color: #00B5F3;
+}
+
+.ui-tipbox-stop {
+    background: #FDEEE9;
+    border: 1px solid #F4C7B5;
+}
+
+.ui-tipbox-stop .ui-tipbox-icon .iconfont {
+    color: #FF5500;
+}
+
+.ui-tipbox-wait {
+    border: 1px solid #E6CBB1;
+    background: #FFF9D9;
+}
+
+.ui-tipbox-wait .ui-tipbox-icon .iconfont {
+    color: #B26100;
+}
+
+.ui-tipbox-content {
+    margin: 14px 0 14px 87px;
+}
+
+.ui-tipbox-content .ui-tipbox-title {
+    margin: 0;
+    padding: 0;
+}
+
+.ui-tipbox-content h3.ui-tipbox-title,
+.ui-tipbox-content-simple h3.ui-tipbox-title {
+    color: #333;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.ui-tipbox-content-simple {
+    margin: 22px 0 22px 88px;
+}
+
+.ui-tipbox-explain {
+    margin: 0;
+    padding: 0;
+    color: #808080;
+}
+
+.ui-tipbox-white  {
+    background: #fff;
+    border: 1px solid transparent;
+    _border-color:tomato;   /* fix ie6 dont support border transparent */
+    _filter:chroma(color=tomato);
+}
+/*! endblock alice/tipbox/1.0.0/tipbox-debug.css */
+
+/*! block alice/tiptext/1.0.1/tiptext-debug.css */
+/* alice.tiptext 样式模块 */
+
+@charset "utf-8";
+
+.ui-tiptext {
+    margin: 0;
+    color: #4D4D4D;
+    position:relative;
+    font-size: 12px;
+    zoom:1;
+}
+.ui-tiptext-container {
+    padding: 8px 12px;
+    position:relative;
+    zoom:1;
+}
+.ui-tiptext .iconfont {
+    font-size: 1.33em;
+    line-height: 1em;
+    text-shadow: 0 1px 0 #fff;
+    position: relative;
+    top: 2px;
+}
+.ui-tiptext-icon {
+    display:inline-block;
+    *display:inline;
+    *zoom:1;
+}
+.ui-tiptext-message .ui-tiptext-icon {
+    color: #0483CF;
+}
+.ui-tiptext-container-message {
+    background: #e5f5ff;
+    border: 1px solid #c9d5e2;
+}
+.ui-tiptext-success .ui-tiptext-icon {
+    color: #20DC19;    
+}
+.ui-tiptext-container-success {
+    background: #E7FFCE;
+    border: 1px solid #B9E2A0;
+}
+.ui-tiptext-error .ui-tiptext-icon {
+    color: #FF4800;    
+}
+.ui-tiptext-container-error {
+    background: #fceee8;
+    border: 1px solid #f6c8b5;
+}
+.ui-tiptext-warning .ui-tiptext-icon {
+    color: #FFA700;    
+}
+.ui-tiptext-container-warning {
+    background: #ffff8d;
+    border: 1px solid #e7c560;
+}
+.ui-tiptext-question .ui-tiptext-icon {
+    color: #00B5F3;    
+}
+.ui-tiptext-container-question {
+    background: #e5f5ff;
+    border: 1px solid #c9d5e2;
+}
+.ui-tiptext-stop .ui-tiptext-icon {
+    color: #FF5500;
+}
+.ui-tiptext-container-stop {
+    background: #fceee8;
+    border: 1px solid #f6c8b5;
+}
+.ui-tiptext-wait .ui-tiptext-icon {
+    color: #B26100;
+}
+.ui-tiptext-container-wait{
+    background: #FFF9D9;
+    border: 1px solid #E6CBB1;
+}
+
+/* arrow */
+.ui-tiptext-arrowup, .ui-tiptext-arrowup em, .ui-tiptext-arrowup span,
+.ui-tiptext-arrowleft, .ui-tiptext-arrowleft em, .ui-tiptext-arrowleft span,
+.ui-tiptext-arrowdown, .ui-tiptext-arrowdown em, .ui-tiptext-arrowdown span {
+    position: absolute;
+    font-size: 14px;  
+    font-family: "SimSun";
+    font-style: normal;
+    line-height: 1;
+}
+
+.ui-tiptext-arrowup, .ui-tiptext-arrowleft, .ui-tiptext-arrowdown {
+    height: 10px;
+    width: 16px;
+}
+
+.ui-tiptext-arrowup {
+    left: 32px;
+    top:-7px;
+}
+.ui-tiptext-arrowup em {
+    top: -1px;
+}
+
+.ui-tiptext-arrowleft {
+    left: -6px;
+    top:10px;
+}
+.ui-tiptext-arrowleft em {
+    left:-1px;
+}
+
+.ui-tiptext-arrowdown {
+    left: 32px;
+    bottom: -3px;
+}
+
+.ui-tiptext-arrowdown em {
+    top: 1px;
+}
+
+/* arrow color*/
+.ui-tiptext-container-message .ui-tiptext-arrow em {
+    color:#c9d5e2;
+}
+.ui-tiptext-container-message .ui-tiptext-arrow span {
+    color:#e5f5ff;
+}
+.ui-tiptext-container-success .ui-tiptext-arrow em {
+    color:#B9E2A0;
+}
+.ui-tiptext-container-success .ui-tiptext-arrow span {
+    color:#E7FFCE;
+}
+.ui-tiptext-container-error .ui-tiptext-arrow em {
+    color:#f6c8b5;
+}
+.ui-tiptext-container-error .ui-tiptext-arrow span {
+    color:#fceee8;
+}
+.ui-tiptext-container-warning .ui-tiptext-arrow em {
+    color:#e7c560;
+}
+.ui-tiptext-container-warning .ui-tiptext-arrow span {
+    color:#ffff8d;
+}
+.ui-tiptext-container-question .ui-tiptext-arrow em {
+    color:#c9d5e2;
+}
+.ui-tiptext-container-question .ui-tiptext-arrow span {
+    color:#e5f5ff;
+}
+.ui-tiptext-container-stop .ui-tiptext-arrow em {
+    color:#f6c8b5;
+}
+.ui-tiptext-container-stop .ui-tiptext-arrow span {
+    color:#fceee8;
+}
+.ui-tiptext-container-wait .ui-tiptext-arrow em {
+    color:#E6CBB1;
+}
+.ui-tiptext-container-wait .ui-tiptext-arrow span {
+    color:#FFF9D9;
+}
+
+.ui-tiptext-close {
+    position: absolute;
+    right: 10px;
+    top: 8px;
+    color: #60A2C5;
+    cursor: pointer;
+}
+/*! endblock alice/tiptext/1.0.1/tiptext-debug.css */
+
+/*! block alice/form/1.0.0/form-debug.css */
+/* alice.form 样式模块 */
+
+@charset "utf-8";
+
+.ui-form {
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.ui-form, .ui-form * {
+    list-style: none;
+}
+
+.ui-form fieldset {
+    border:0;
+}
+
+.ui-form legend {
+    display: none;
+}
+
+.ui-form-explain {
+    margin: 0;
+    padding: 5px 0 0;
+    font-size: 12px;
+    color: #B2B2B2;
+}
+
+.ui-form-other {
+    margin-left: 4px;
+}
+
+.ui-form-text {
+    display: inline-block;
+    margin-top: 6px;
+    *display: inline;
+    *zoom: 1;
+}
+
+.ui-form-item:after {
+    clear: both;
+    content: '.';
+    display: block;
+    height: 0;
+    visibility: hidden;
+}
+
+.ui-form-item {
+    padding: 0 5px 20px 170px;
+    zoom: 1;
+}
+
+.ui-form-item select {
+    vertical-align: middle;
+    margin: 4px 0 0;
+}
+
+.ui-form-item input {
+    vertical-align: middle;
+}
+
+.ui-form-item .ui-input {
+    font-size: 12px;
+    color: #595959;
+    vertical-align: middle;
+    *vertical-align: -5px;
+}
+
+.ui-form-item-error .ui-input,
+.ui-form-item-error .ui-textarea {
+    border: 1px #F00 solid;
+    color: #F00;
+}
+
+.ui-form-item-error .ui-input-reset {
+    border: 1px #9C9C9C solid;
+    color: #000;
+}
+
+.ui-form-item-error .ui-form-explain {
+    color: #FF5243;
+}
+
+/*! block alice/form/1.0.0/input-debug.css */
+.ui-input {
+    width: 170px;
+    padding: 7px 9px;
+    line-height: 18px;
+    border: 1px solid #ccc;
+    border-top-color: #a6a6a6;
+    color: #595959;
+    font-size: 12px;    
+}
+
+.ui-input:hover,
+.ui-textarea:hover,
+.ui-input-hover {
+    border: 1px #a6a6a6 solid;
+    border-top-color: #808080;
+}
+
+.ui-input:focus,
+.ui-textarea:focus,
+.ui-input-focus {
+    border: 1px #07f solid;
+    outline: 1px #8cddff solid; /* box-shadow: 0 0 3px #8cddff; */
+    color: #595959;
+}
+
+.ui-textarea {
+    width: 422px;
+    height: 79px;
+    line-height: 15px;
+    border: 1px #9C9C9C solid;
+    padding: 1px 3px 0 4px;
+    overflow: auto;
+    font-family: Arial;
+    font-size: 12px;
+}
+
+.ui-input[disabled],
+.ui-textarea[disabled] {
+    border: 1px solid #ccc;
+    background: #f2f2f2;
+}
+
+.ui-input:disabled,
+.ui-textarea:disabled {
+    border: 1px solid #ccc;
+    background: #f2f2f2;
+}
+
+.placeholder {
+    color: #ccc;
+}
+
+.ui-input-checkcode {
+    width: 100px;
+    height: 24px;
+    line-height: 28px;
+    margin: 0;
+    padding: 2px 5px;
+}
+
+.ui-form-item-hover .ui-input,
+.ui-form-item-hover .ui-textarea {
+    border:1px #727272 solid;
+}
+
+.ui-form-item-focus .ui-input,
+.ui-form-item-focus .ui-textarea {
+    border: 1px #07f solid;
+    outline: 1px #8cddff solid;
+}
+
+.ui-form-item-focus .ui-form-explain,
+.ui-form-item-hover .ui-form-explain {
+    color:#333;
+}
+/*! endblock alice/form/1.0.0/input-debug.css */
+
+/*! block alice/form/1.0.0/label-debug.css */
+.ui-label {
+    float: left;
+    width: 170px;
+    margin-left: -180px;
+    padding-top: 4px;
+    text-align: right;
+    font-size: 14px;
+}
+
+.ui-form-required {
+    color: #FF0000;
+    font-family: SimSun;
+    font-size: 14px;
+    margin-right: 6px;
+}
+/*! endblock alice/form/1.0.0/label-debug.css */
+/*! endblock alice/form/1.0.0/form-debug.css */
+
+/*! block alice/button/1.0.0/button-debug.css */
+.ui-button * {
+    margin:0;
+    padding:0;
+}
+
+.ui-button {
+    display: inline-block;
+    *display: inline;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+    font-family: verdana, Hiragino Sans GB;
+    font-size: 14px;
+    font-weight: bold;    
+    border-radius: 2px;    
+    padding: 0 20px;
+    *zoom: 1;
+    *overflow: visible; /* for a ie6/7 bug http://blog.csdn.net/jyy_12/article/details/6636099 */    
+}
+
+.ui-button .ui-button-text {
+    background: none;
+    padding: 0;
+    height: auto;
+    line-height: auto;
+}
+
+.ui-button:hover {
+    text-decoration: none;    
+}
+
+input.ui-button-text, button.ui-button-text {
+    *vertical-align: top; /* for a ie7 bug */
+    font-family: Hiragino Sans GB;
+}
+
+.ui-button:active {
+    position: relative;
+    top: 1px;
+}
+
+/*! block alice/button/1.0.0/ui-button-orange-debug.css */
+.ui-button-lorange,
+.ui-button-morange,
+.ui-button-sorange {
+    color: #fff;
+    border:1px solid #F67600;
+    background-color: #F5AA2B;    
+    background: -webkit-gradient(linear, left top, left bottom, from(#FFA600), to(#FE9200));
+    background: -moz-linear-gradient(top, #FFA600, #FE9200);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFA600', endColorstr='#FE9200');
+    background:-o-linear-gradient(top, #FFA600, #FE9200);
+    background: linear-gradient(top, #FFA600, #FE9200);
+    box-shadow: 0 -2px 3px rgba(255, 255, 255, 0.4) inset;
+}
+
+.ui-button-lorange:hover,
+.ui-button-morange:hover,
+.ui-button-sorange:hover {
+    border: 1px solid #F26600;
+    background-color: #F5AA2B;
+    background: -webkit-gradient(linear, left top, left bottom, from(#FFB91C), to(#FFA700));
+    background: -moz-linear-gradient(top, #FFB91C, #FFA700);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFB91C', endColorstr='#FFA700');
+    background:-o-linear-gradient(top, #FFB91C, #FFA700);
+    background: linear-gradient(top, #FFB91C, #FFA700);
+    box-shadow: 0 -2px 2px rgba(255, 255, 255, 0.4) inset;
+}
+
+a.ui-button-lorange,
+a.ui-button-morange,
+a.ui-button-sorange,
+a.ui-button-lorange:hover,
+a.ui-button-morange:hover,
+a.ui-button-sorange:hover,
+a.ui-button-lorange:active,
+a.ui-button-morange:active,
+a.ui-button-sorange:active {
+    color:#fff;    
+}
+
+.ui-button-lorange {
+    line-height:33px;
+    height:33px;
+}
+
+.ui-button-morange {
+    line-height:29px;
+    height:29px;
+}
+
+.ui-button-sorange {
+    padding: 0 12px;
+    line-height:23px;
+    height:23px;
+    font-size:12px;
+}
+/*! endblock alice/button/1.0.0/ui-button-orange-debug.css */
+
+/*! block alice/button/1.0.0/ui-button-white-debug.css */
+.ui-button-lwhite,
+.ui-button-mwhite,
+.ui-button-swhite {
+    border:1px solid #B3B3B3;
+    color:#595959;
+    background-color: #F2F2F2;    
+    background: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(#EBEBEB));
+    background: -moz-linear-gradient(top, #FFFFFF, #EBEBEB);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFF', endColorstr='#EBEBEB');
+    background:-o-linear-gradient(top, #FFFFFF, #EBEBEB);
+    background: linear-gradient(top, #FFFFFF, #EBEBEB);
+    box-shadow: 0 -2px 2px rgba(255, 255, 255, 0.33) inset;
+}
+
+.ui-button-lwhite:hover,
+.ui-button-mwhite:hover,
+.ui-button-swhite:hover {
+    border: 1px solid #999;
+    background-color: #F6F6F6;
+    background: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(#F0F0F0));
+    background: -moz-linear-gradient(top, #FFFFFF, #F0F0F0);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFF', endColorstr='#F0F0F0');
+    background:-o-linear-gradient(top, #FFFFFF, #F0F0F0);
+    background: linear-gradient(top, #FFFFFF, #F0F0F0);
+}
+
+a.ui-button-lwhite,
+a.ui-button-mwhite,
+a.ui-button-swhite,
+a.ui-button-lwhite:active,
+a.ui-button-mwhite:active,
+a.ui-button-swhite:active,
+a.ui-button-lwhite:hover,
+a.ui-button-mwhite:hover,
+a.ui-button-swhite:hover {
+    color:#595959;    
+}
+
+.ui-button-lwhite {
+    line-height:33px;
+    height:33px;
+}
+
+.ui-button-mwhite {
+    line-height:29px;
+    height:29px;
+}
+
+.ui-button-swhite {
+    line-height:23px;
+    height:23px;
+    padding:0 12px;
+    font-size:12px;
+}
+/*! endblock alice/button/1.0.0/ui-button-white-debug.css */
+
+/*! block alice/button/1.0.0/ui-button-disable-debug.css */
+.ui-button-ldisable,
+.ui-button-mdisable,
+.ui-button-sdisable {
+    color:#fff;    
+    border: none;
+    background: #D4D4D4;
+    cursor: default;
+    text-shadow: 0 -1px 1px #aaa;    
+}
+
+a.ui-button-ldisable,
+a.ui-button-mdisable,
+a.ui-button-sdisable,
+a.ui-button-ldisable:active,
+a.ui-button-mdisable:active,
+a.ui-button-sdisable:active,
+a.ui-button-ldisable:hover,
+a.ui-button-mdisable:hover,
+a.ui-button-sdisable:hover {
+    color:#fff; 
+}
+
+.ui-button-ldisable {
+    line-height:35px;
+    height:35px;
+}
+
+.ui-button-mdisable {
+    line-height:31px;
+    height:31px;
+}
+
+.ui-button-sdisable {
+    line-height:25px;
+    height:25px;
+    padding:0 12px;
+    font-size:12px;
+}
+
+input.ui-button-ldisable,
+input.ui-button-mdisable,
+input.ui-button-sdisable {
+    cursor: default;
+}
+/*! endblock alice/button/1.0.0/ui-button-disable-debug.css */
+
+/*! block alice/button/1.0.0/ui-button-blue-debug.css */
+.ui-button-lblue,
+.ui-button-mblue,
+.ui-button-sblue {
+    border:none;
+    color:#fff;
+
+    background-color: #F5AA2B;    
+    background: -webkit-gradient(linear, left top, left bottom, from(#3283C6), to(#0A6695));
+    background: -moz-linear-gradient(top, #3283C6, #0A6695);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3283C6', endColorstr='#0A6695');
+    background:-o-linear-gradient(top, #3283C6, #0A6695);
+    background: linear-gradient(top, #3283C6, #0A6695);
+    box-shadow: 0 -2px 2px rgba(255, 255, 255, 0.25) inset;
+}
+
+.ui-button-lblue:hover,
+.ui-button-mblue:hover,
+.ui-button-sblue:hover {
+    background-color: #F5AA2B;
+    background: -webkit-gradient(linear, left top, left bottom, from(#3295E5), to(#0C689B));
+    background: -moz-linear-gradient(top, #3295E5, #0C689B);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3295E5', endColorstr='#0C689B');
+    background:-o-linear-gradient(top, #3295E5, #0C689B);
+    background: linear-gradient(top, #3295E5, #0C689B);
+}
+
+a.ui-button-lblue,
+a.ui-button-mblue,
+a.ui-button-sblue,
+a.ui-button-lblue:active,
+a.ui-button-mblue:active,
+a.ui-button-sblue:active,
+a.ui-button-lblue:hover,
+a.ui-button-mblue:hover,
+a.ui-button-sblue:hover {
+    color:#fff;    
+}
+
+.ui-button-lblue {
+    line-height:33px;
+    height:33px;
+}
+
+.ui-button-mblue {
+    line-height:29px;
+    height:29px;
+}
+
+.ui-button-sblue {
+    padding: 0 12px;
+    line-height:23px;
+    height:23px;
+    font-size:12px;
+}
+/*! endblock alice/button/1.0.0/ui-button-blue-debug.css */
+/*! endblock alice/button/1.0.0/button-debug.css */
+
+/*! block alice/list/1.0.0/list-debug.css */
+/* alice.list 样式模块 */
+
+.ui-list {
+    margin: 0;
+    padding: 10px;
+    list-style: square inside;
+}
+/* 默认有方角 */
+.ui-list-item {
+    font-size: 9px;
+    line-height: 20px;
+    color: #08c;
+}
+.ui-list-item a {
+    font-size: 12px;
+    line-height: 20px;
+    text-decoration: none;
+    vertical-align: middle;
+}
+
+.ui-list-item a:hover {
+    text-decoration: underline;    
+}
+
+/* 灰色小方角 */
+.ui-list-gray .ui-list-item {
+    color: #808080;
+}
+
+/* 灰色小方角＋灰色链接 */
+.ui-list-graylink .ui-list-item {
+    color: #808080;    
+}
+
+.ui-list-graylink .ui-list-item a {
+    color: #666;
+}
+
+/* 没有小图标的 */
+.ui-list-nosquare {
+    list-style: none;    
+}
+
+/* ui-dlist */
+
+.ui-dlist {
+    display: inline-block;
+    color: #808080;
+    font-size: 12px;
+    line-height: 2.2;
+}
+
+.ui-dlist-tit {
+    float: left;
+    width: 20%;/* 默认值, 具体根据视觉可改 */
+    text-align: right;
+    margin: 0;
+}
+
+.ui-dlist-det {
+    float: left;
+    width: 80%;/* 默认值，具体根据视觉可改 */
+    text-align: left;
+    margin: 0;
+}
+/*! endblock alice/list/1.0.0/list-debug.css */
+
+/*! block alice/table/1.0.0/table-debug.css */
+/* alice.table 样式模块 */
+
+.ui-table {
+    border-collapse:collapse;
+    border:1px solid #ccc;
+    width:100%;
+    font-size: 12px;
+    text-align: left;    
+}
+.ui-table tr:nth-child(even),
+.ui-table-split /* 隔行换色效果 */,
+.ui-table-hover /* 用作表格行hover效果 */ {    
+    background-color:#FBFBFB;
+}
+.ui-table tr {
+    color:#808080;
+}
+.ui-table thead tr {
+    color:#666;
+}
+.ui-table thead {
+    color:#666;
+    background-color: #F6F6F6;    
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#F8F8F8', endColorstr='#F2F2F2');
+    background: -webkit-gradient(linear, left top, left bottom, from(#F8F8F8), to(#F2F2F2));
+    background: -moz-linear-gradient(top, #F8F8F8, #F2F2F2);
+    background: -o-linear-gradient(top, #F8F8F8, #F2F2F2);
+    background: linear-gradient(top, #F8F8F8, #F2F2F2);
+}
+.ui-table th {
+    padding:7px 9px;
+    border-bottom:1px solid #d9d9d9;
+    text-align: left;    
+}
+.ui-table td {
+    padding:8px 9px 7px;
+    border-bottom:1px solid #d9d9d9;
+}
+.ui-table th {
+    padding:7px 9px;
+}
+.ui-table tfoot td {
+    border-bottom:none;
+}
+.ui-table .ui-table-action {
+    background-color:#FFFFEF;
+}
+.ui-table .ui-table-selected {
+    background-color:#FEFFC5;
+}
+
+/* 无边框table加上ui-table-noborder */
+.ui-table-noborder, .ui-table-noborder td, .ui-table-noborder tr, .ui-table-noborder th {
+    border:none;
+    outline:none;
+}
+.ui-table-noborder .ui-table-split, .ui-table-noborder .ui-table-hover {
+    background-color:#f7f7f7;
+}
+/* 当table放在一个有边框的容器中时，比如ui-box，需要添加类名ui-table-inbox去掉本身的外框 */
+.ui-table-inbox {
+    border:none;
+    outline:none;
+}
+/*! endblock alice/table/1.0.0/table-debug.css */
+
+/*! block alice/paging/1.0.0/paging-debug.css */
+/* alice.paging 样式模块 */
+
+@charset "utf-8";
+
+.ui-paging, .ui-paging input {
+    color:#808080;
+    margin: 0;
+    padding: 0;
+    zoom: 1;
+    font-size: 12px;
+    vertical-align: middle;
+}
+
+.ui-paging:after {
+    clear: both;
+    content: " ";
+    display: block;
+    font-size: 0;
+    height: 0;
+    visibility: hidden;
+}
+
+.ui-paging a,
+.ui-paging span.ui-paging-prev,
+.ui-paging span.ui-paging-next {
+    text-decoration:none;
+    color:#808080;
+    margin:0 3px;
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    vertical-align: middle;
+    height:22px;
+    line-height:22px;
+}
+
+.ui-paging-prev,
+.ui-paging-next,
+.ui-paging-goto {
+    background-color: #F9F9F9;
+    background: -webkit-gradient(linear, left top, left bottom, from(#FEFEFE), to(#F4F4F4));
+    background: -moz-linear-gradient(top, #FEFEFE, #F4F4F4);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FEFEFE', endColorstr='#F4F4F4');
+    background:-o-linear-gradient(top, #FEFEFE, #F4F4F4);
+    background: linear-gradient(top, #FEFEFE, #F4F4F4); 
+    padding:0 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-shadow: 0 0 0 1px #fff inset;
+}
+
+.ui-paging-prev:hover,
+.ui-paging-next:hover,
+.ui-paging-goto:hover {
+    border-color: #999;
+    color: #666;
+}
+
+.ui-paging-prev:hover .iconfont,
+.ui-paging-next:hover .iconfont {
+    color: #666;
+}
+
+.ui-paging .ui-paging-prev {
+    margin: 0 3px 0 0;
+}
+
+.ui-paging .iconfont {
+    font-size: 10px;
+    color: #787878;
+}
+
+.ui-paging a.ui-paging-item {
+    background-color:#f3f3f3;
+    font-weight:bold;
+    padding:0 8px;
+    border:none;    
+}
+
+.ui-paging a.ui-paging-current, .ui-paging a.ui-paging-item:hover {
+    color:#fff;
+    background:#ff9c00;
+}
+
+a.ui-paging-prev:hover,
+a.ui-paging-next:hover {    
+    text-decoration:none;
+    color:#666;
+}
+
+.ui-paging-info {
+    line-height:24px;
+    margin-right:5px;
+    height:24px;
+}
+
+.ui-paging-ellipsis {
+    margin:0 5px;
+    line-height: 16px;
+    font-weight:bold;
+}
+
+.ui-paging-which input {
+    height: 20px;
+    line-height: 20px;
+    padding: 0 6px;
+    width:22px;
+    border:1px solid;
+    border-color:#aaa #d1d1d1 #d1d1d1 #aaa;
+}
+
+.ui-paging-which input:hover {
+    border-color:#999;
+    color:#666;
+}
+
+.ui-paging-bold {
+    font-weight:bold;
+    padding:0 8px;
+}
+
+.ui-paging span.ui-paging-prev,
+.ui-paging span.ui-paging-next,
+.ui-paging span.ui-paging-prev .iconfont,
+.ui-paging span.ui-paging-next .iconfont {    
+    color:#fff;
+    box-shadow:none;
+    background: #d4d4d4;
+    border-color: #d4d4d4;
+    filter: none;
+}
+/*! endblock alice/paging/1.0.0/paging-debug.css */
+
+/* ----------------------------------- 账户通组件 -- */
+/* -- 账户通icon -- */
+
+/*! block benefitprod/asset/1.1.2/css/asset-icon-debug.css */
+@charset "utf-8";
+
+/* -- 账户通icon -- */
+.asset-icon {
+    display:inline-block;
+    overflow: hidden;
+    vertical-align:middle;
+    _vertical-align:auto;
+    width: 40px;
+    height: 40px;
+    background: url(https://i.alipayobjects.com/e/201307/dARztN8zn.png) no-repeat left top;
+}
+
+/* ----------------------------------- 首页资产分类icon -- */
+    /* -- 我的银行卡 -- */
+    .asset-icon-index-BANK {
+        background-position: 0 0;
+    }
+    /* -- 我的银行卡-hover -- */
+    .asset-icon-index-BANK-hover {
+        background-position: 0 -280px;
+    }
+    /* -- 我的水电煤 -- */
+    .asset-icon-index-JIAOFEI{
+        background-position: 0 -320px;
+    }
+    /* -- 我的理财 -- */
+    .asset-icon-index-FINANCE {
+        background-position: 0 -40px;
+    }
+        /* -- 我的保险 -- */
+    .asset-icon-index-INSURANCE {
+        background-position: 0 -280px;
+    }
+    /* -- 我的通讯 -- */
+    .asset-icon-index-CARRIER {
+        background-position: 0 -80px;
+    }
+    /* -- 我的航旅 -- */
+    .asset-icon-index-TOURISM {
+        background-position: 0 -120px;
+    }
+    /* -- 我的购物 -- */
+    .asset-icon-index-SHOPPING {
+        background-position: 0 -160px;
+    }
+    /* -- 我的休闲 -- */
+    .asset-icon-index-LIFE {
+        background-position: 0 -200px;
+    }
+    /* -- 我的阿里 -- */
+    .asset-icon-index-ALI {
+        background-position: 0 -240px;
+    }
+/* ----------------------------------- 详情icon -- */
+    /* -- 通用其他 -- */
+    .asset-icon-detail-else {
+        background-position: -40px 0;
+    }
+/* ----------------------------------- 银行详情icon -- */
+    /* -- 快捷支付 -- */
+    .asset-icon-detail-express {
+        background-position: -40px -40px;
+    }
+    /* -- 付款限额 -- */
+    .asset-icon-detail-payLimit {
+        background-position: -40px -80px;
+    }
+    /* -- 卡内余额 -- */
+    .asset-icon-detail-cardBalance {
+        background-position: -40px -120px;
+    }
+    /* -- 账单 -- */
+    .asset-icon-detail-billList {
+        background-position: -40px -160px;
+    }
+    /* -- 积分 -- */
+    .asset-icon-detail-point {
+        background-position: -40px -200px;
+    }
+/* ----------------------------------- 通讯详情icon -- */
+    /* -- 手机余额 -- */
+    .asset-icon-detail-mobileBalance {
+        background-position: -40px -240px;
+    }
+    /* -- 已用话费 -- */
+    .asset-icon-detail-mobileBalanceUsed {
+        background-position: -40px -280px;
+    }
+    /* -- 会员级别 -- */
+    .asset-icon-detail-mobileMemberLevel {
+        background-position: -40px -320px;
+    }
+    /* -- 套餐流量 -- */
+    .asset-icon-detail-mobilePlan {
+        background-position: -40px -360px;
+    }
+    /* -- 已用流量 -- */
+    .asset-icon-detail-mobileFlow {
+        background-position: -40px -400px;
+    }
+/* ----------------------------------- 商户详情icon -- */
+    /* -- 等级 -- */
+    .asset-icon-detail-level {
+        background-position: -40px -440px;
+    }
+    /* -- 优惠 -- */
+    .asset-icon-detail-favourable {
+        background-position: -40px -480px;
+    }
+    /* -- 余额 -- */
+    .asset-icon-detail-balance {
+        background-position: -40px -520px;
+    }
+/* ----------------------------------- 杂七杂八icon -- */
+    /* -- 储蓄卡 -- */
+    .asset-icon-card-type-DC {
+        width: 48px;
+        height: 18px;
+        background-position: -120px 0px;
+    }
+    /* -- 信用卡&准信用卡 -- */
+    .asset-icon-card-type-CC,
+    .asset-icon-card-type-SCC {
+        width: 48px;
+        height: 18px;
+        background-position: -120px -40px;
+    }
+    /* -- 快捷支付logo大 -- */
+    .asset-icon-express-b {
+        width: 69px;
+        height: 18px;
+        background-position: -120px -80px;
+    }
+    /* -- 快捷支付logo小 -- */
+    .asset-icon-express-s {
+        width: 55px;
+        height: 14px;
+        background-position: -120px -120px;
+    }
+    /* -- 快捷支付logo小 灰 -- */
+    .asset-icon-express-s-gray {
+        width: 55px;
+        height: 14px;
+        background-position: -120px -160px;
+    }
+    /* -- 快捷已开通 -- */
+    .asset-icon-express-isopen {
+        width: 61px;
+        height: 14px;
+        background-position: -120px -200px;
+    }
+    /* -- 已开通余额账户数 -- */
+    .asset-icon-index-account-balance {
+        width: 20px;
+        height: 18px;
+        background-position: -80px -00px;
+    }
+    /* -- >已开通积分账户数< -- */
+    .asset-icon-index-account-point {
+        width: 20px;
+        height: 20px;
+        background-position: -80px -40px;
+    }
+    /* -- >已开通优惠券账户数< -- */
+    .asset-icon-index-account-favourable {
+        width: 20px;
+        height: 18px;
+        background-position: -80px -80px;
+    }
+/*! endblock benefitprod/asset/1.1.2/css/asset-icon-debug.css */
+
+/* -- 变灰 -- */
+
+/*! block benefitprod/asset/1.1.2/css/asset-grayscale-debug.css */
+/* ui-grayscale 图片灰度 */
+
+@charset "utf-8";
+
+img.asset-grayscale {
+    filter: url("data:image/svg+xml;utf8,<svg%20xmlns='http://www.w3.org/2000/svg'><filter%20id='grayscale'><feColorMatrix%20type='matrix'%20values='0.3333%200.3333%200.3333%200%200%200.3333%200.3333%200.3333%200%200%200.3333%200.3333%200.3333%200%200%200%200%200%201%200'/></filter></svg>#grayscale"); /* Firefox https://developer.mozilla.org/en-US/docs/CSS/filter */
+    filter: gray; /* IE6+ */
+    filter: grayscale(100%);
+    -webkit-filter: grayscale(100%);
+}
+/*! endblock benefitprod/asset/1.1.2/css/asset-grayscale-debug.css */
+
+/* -- 首页已绑资产 -- */
+
+/*! block benefitprod/asset/1.1.2/css/asset-index-detail-debug.css */
+@charset "utf-8";
+
+/* -- 首页资产 -- */
+.asset-index-detail {
+    overflow: hidden;
+    zoom: 1;
+    width: 100%;
+    margin: 0; 
+    border: 1px solid #CFD2D4;
+    background: #FFFFFF;
+    border-collapse: separate;
+    border-spacing: 0;
+    *border-collapse: collapse;
+}
+    .asset-index-detail td {
+        height: 80px;
+    }
+    .asset-index-detail-cate {
+        width: 104px;
+        *width: 107px;
+        text-align: center;
+        font-size: 14px;
+        font-weight: 700;
+        border-right: 1px solid #CED2D3;
+        border-left: 3px solid #CED2D3;
+        color: #686D71;
+        line-height: 1.3;
+    }
+        .asset-index-detail-cate a:link,
+        .asset-index-detail-cate a:visited {
+            color: #686D71;
+        }
+        .asset-index-detail-cate a:hover {
+            color: #0088CC;
+            text-decoration: none; 
+        }
+
+/* -- 分类资产内容 -- */
+.asset-index-detail-info {
+    background: #F9F9F9;
+}
+    /* -- 分类资产介绍 -- */
+    .detail-intro {
+        padding: 10px;
+        font-size: 14px;
+    }
+        .detail-intro a {
+            margin: 0 0 0 20px;
+        }
+/* -- 资产列表 -- */
+.detail-list {
+    overflow: hidden;
+    zoom: 1;
+    border-top: 1px solid #CDD2D6;
+    background: #FFF;
+}
+    /* -- 已绑商户 -- */
+    .asset-provider-bind {
+        float: left;
+        overflow: hidden; 
+        width: 260px;
+        height: 158px;
+        position: relative;
+        z-index: 10;
+        background: #EFF0F2;
+        box-shadow: -2px 0 2px #DDD inset;
+    }
+        .asset-provider-bind-list {
+            position: relative;
+            top: 0;
+            overflow-x: hidden;
+            padding: 0 0 5px 0; 
+        }
+            .asset-provider-item {
+                position: relative;
+                z-index: 8;
+                height: 39px;
+                border-bottom: 1px solid #D0D1D3;
+                cursor: pointer;
+                -webkit-transition: all 0.25s ease-in;
+                transition: all 0.25s ease-in;
+            }
+            .asset-provider-bind-list .current {
+                z-index: 10;
+                background: #fff;
+                box-shadow: 0 2px 2px #DDD, 0 -2px 2px #DDD;
+                border-bottom: 1px solid #fff;
+                *border-bottom: 1px solid #D0D1D3;
+                -webkit-transition: all 0.25s ease-in;
+                transition: all 0.25s ease-in;
+            }
+                .asset-provider-item-logo,
+                .asset-provider-item-name,
+                .asset-provider-item-user{
+                    position: absolute;
+                }
+                .asset-provider-item-logo {
+                    top: 11px;
+                    left: 15px;
+                }
+                .asset-provider-item-name {
+                    overflow: hidden; 
+                    width: 80px; 
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    top: 10px;
+                    left: 40px;
+                }
+                .asset-provider-item-user {
+                    overflow: hidden; 
+                    width: 120px; 
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    top: 10px;
+                    right: 15px;
+                    text-align: right;
+                    //background: #EFF0F2;
+                }
+                .asset-provider-bind-list .current .asset-provider-item-user {
+                    //background: #fff; 
+                }
+
+        .asset-provider-bind-more {
+            position: absolute;
+            z-index: 9;
+            bottom: 0;
+            overflow: hidden;
+            width: 256px; 
+            height: 30px;
+            padding: 8px 0 0 0;
+            text-align: center;
+            background: #EFF0F2; 
+        }
+            .asset-provider-bind-more a {
+                padding: 8px 9px;
+                color: #676C6F;
+                font-size: 14px;
+                border-radius: 0 0 4px 4px;
+            }
+            .asset-provider-bind-more a:hover {
+                text-decoration: none;
+            }
+
+    /* -- 已绑商户详情 -- */
+    .asset-provider-info-list {
+        float: left;
+        position: relative;
+        z-index: 20;
+        width: 380px;
+        height: 158px;
+    }
+        .asset-provider-info {
+            float: left;
+            width: 315px;
+            overflow: hidden;
+            zoom: 1;
+            position: relative;
+            padding: 10px 10px 3px 30px;
+        }
+            .asset-provider-info-name {
+                float: left;
+            }
+            .asset-provider-info-value {
+                float: left;
+            }
+                .asset-provider-info-value span {
+                    font-size: 12px;
+                }
+            .asset-provider-info-app {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+            }
+
+            .asset-provider-info-stat-1{
+                color:#adb5b9;
+            }
+
+            .asset-provider-info-stat-2{
+                color:#4d9c64;
+            }
+            .asset-provider-info-stat-3{
+                color:#e6a031;
+            }
+            .asset-provider-info-stat-4{
+                color:#cb4439;
+            }
+            .asset-provider-info-stat-5{
+                color:#adb5b9;
+            }
+        /* -- 财产类 -- */
+        .asset-provider-info-property {}
+            .asset-provider-info-property .asset-provider-info-name {
+                padding-top: 13px;
+            }
+            .asset-provider-info-property .asset-provider-info-value {
+                font-size: 24px;
+            }
+            .asset-provider-info-property .asset-provider-info-app {
+                top: 15px;
+            }
+            .asset-provider-info-property .asset-provider-info-app a.ui-button-mwhite {
+                padding: 0 10px;
+                color: #8E8E8E;
+                background: #F3F3F3;
+                box-shadow: 0px 0px 2px 1px #FFF inset;
+            }
+            .asset-provider-info-property .asset-provider-info-app a.ui-button-mwhite:hover {
+                color: #4D4D4D;
+            }
+
+            .asset-provider-info-property a.ui-button-sorange{
+                margin:0;
+            }
+
+            a.ui-button-swhite{
+                color: #8E8E8E;
+                background: #F3F3F3;
+                box-shadow: 0px 0px 1px 0px #FFF inset;
+            }
+
+            a.ui-button-swhite:hover{
+                color: #4D4D4D;
+            }
+
+            .asset-provider-info-property .asset-provider-info-value span {
+                vertical-align: 1px;
+                _vertical-align: -2px;
+                line-height: 34px;
+            }
+
+        /* -- 查看详情连接 -- */
+        .asset-provider-info-link {
+            display: block;
+            height: 158px;
+            position: absolute;
+            top: 0;
+            right: 0;
+            overflow: hidden;
+            width: 0px;
+            text-indent: -9999px;
+            background: #858A8E url(https://i.alipayobjects.com/e/201305/IcTB9uI3Z.png) no-repeat 4px 69px;
+            -webkit-transition: all 0.15s ease-in;
+            transition: all 0.15s ease-in;
+        }
+        
+        .detail-more {
+            background: #FFF;
+            padding: 0 37px 20px 0;
+            text-align: right;
+        }
+
+        .ft-24px{
+            font-size:24px;
+        }
+/*! endblock benefitprod/asset/1.1.2/css/asset-index-detail-debug.css */
+
+/* -- 侧边栏 -- */
+
+/*! block benefitprod/asset/1.1.2/css/sidebar-debug.css */
+/* sidebar 侧边栏 */
+
+@charset "utf-8";
+
+.sidebar a img {
+    display: block;
+}
+
+/* -- 添加商户 -- */
+.sid-apply {}
+    .sid-apply a,
+    .sid-apply a:visited {
+        display: block;
+        padding: 20px 0;
+        text-align: center;
+        text-decoration: none;
+        border-radius: 4px;
+        font-weight: 700;
+        border: 1px dashed #AACCDD;
+        background: #FAFAFB;
+        -webkit-transition: all 0.15s ease-in;
+        transition: all 0.15s ease-in;
+        outline: none;
+    }
+    .sid-apply a:hover {
+        border: 1px dashed #8599B2;
+        background: #DFEEF7;
+        -webkit-transition: all 0.15s ease-in;
+        transition: all 0.15s ease-in;
+        text-decoration: none;
+    }
+    .sid-apply .iconfont {
+        cursor: pointer;
+        margin: 0 5px 0 0;
+        vertical-align: -5px;
+        font-size: 30px;
+        text-decoration: none;
+        color: #A8B5C4;
+    }
+
+/* -- 商户大全 - 热门添加 -- */
+.asset-sid-add {
+    display: block;
+    position: relative;
+    overflow: hidden; 
+    border: 1px dashed #AACCDD;
+    padding: 15px;
+    margin: 10px 0 0 0;
+    text-align: right;
+    border-radius: 4px;
+    zoom: 1; 
+}
+.asset-sid-add:hover {
+    text-decoration: none;
+    border: 1px dashed #0088CC;
+}
+    .asset-sid-add img {
+        position: absolute;
+        top: 4px;
+        left: 5px;
+    }
+/*! endblock benefitprod/asset/1.1.2/css/sidebar-debug.css */
+
+/* -- 面包屑 -- */
+
+/*! block benefitprod/asset/1.1.2/css/asset-breadcrumb-debug.css */
+/* asset-breadcrumb 面包屑模块 */
+
+@charset "utf-8";
+
+.asset-breadcrumb {
+    display: block;
+    overflow-x: hidden;
+    zoom: 1;
+    clear: both;
+    font-size: 14px;
+    margin: 0 0 14px;
+}
+    .asset-breadcrumb li {
+        float: left;
+    }
+    .asset-breadcrumb .asset-divider {
+        margin: 0 7px 0 5px;
+        font-size: 11px;
+        color: #999999;
+        vertical-align: 1px; 
+    }
+    .asset-breadcrumb .asset-breadcrumb-active {
+        color: #4D4D4D;
+    }
+/*! endblock benefitprod/asset/1.1.2/css/asset-breadcrumb-debug.css */
+
+/* -- 首页导航 -- */
+
+/*! block benefitprod/asset/1.1.2/css/asset-nav-debug.css */
+@charset "utf-8";
+
+/* -- 首页导航 -- */
+.asset-nav {
+    z-index: 100;
+    overflow: hidden;
+    height: 34px;
+    margin: 0 0 20px 0;
+    padding: 3px; 
+    color: #676C6F;
+    font-size: 14px;
+    background: #CFD3D6; 
+}
+.asset-nav a:link,
+.asset-nav a:visited {
+    color: #686C6F;
+}
+
+.asset-nav-list{
+    font-size:12px;
+    line-height: 20px;
+    float: left;
+}
+
+.asset-nav-list li {
+     float: left;
+     margin: 0 10px 0 0;
+}
+
+.asset-nav-list li a strong {
+    font-size: 11px;
+    font-weight: 400;
+}
+
+    .asset-nav .asset-nav-title {
+        float: left;
+        width: 107px;
+        padding: 7px 0 9px;
+        text-align: center;
+        font-weight: 700;
+    }
+    .asset-nav .asset-nav-finance {
+        float: left;
+        width: 232px;
+        padding: 7px 0 6px;
+        margin-right: 3px; 
+        border-left: 3px solid #4879BC;
+        background: #FFFFFF;
+    }
+        .asset-nav .asset-nav-finance .asset-nav-finance-title {
+            float: left;
+            display: inline;
+            margin: 0 0 0 10px;
+            color: #487BBD;
+            background: url(https://i.alipayobjects.com/e/201305/PMjSX9nVt.png) no-repeat 32px 9px;
+            padding: 0 17px 0 0;
+        }
+
+    .asset-nav .asset-nav-life {
+        float: left;
+        width: 396px;
+        padding: 7px 0 6px;
+        border-left: 3px solid #F15928;
+        background: #FFFFFF;
+    }
+        .asset-nav .asset-nav-life .asset-nav-life-title {
+            float: left;
+            display: inline;
+            margin: 0 0px 0 10px;
+            color: #F35828;
+            background: url(https://i.alipayobjects.com/e/201305/PMjSX9nVt.png) no-repeat 32px -42px;
+            padding: 0 17px 0 0;
+        }
+
+/* -- 当asset-nav浮动之后占位fix -- */
+.asset-nav-height-fix {
+    height: 40px;
+    margin: 0 0 10px 0;
+}
+/*! endblock benefitprod/asset/1.1.2/css/asset-nav-debug.css */
+
+/* -- 商户详情 -- */
+
+/*! block benefitprod/asset/1.1.2/css/asset-provider-detail-debug.css */
+/* business 商户详情 */
+
+@charset "utf-8";
+
+/* -- 绝对定位 logo -- */
+.business-brief {
+    width: 189px;
+    position: absolute;
+    z-index: 100;
+    top: 15px;
+    left: 8px;
+    border: 3px solid rgba(175, 178, 183, 0.25);
+    border-radius: 7px;
+}
+    /* -- .商户logo -- */
+    .business-brief .business-logo {
+        padding: 15px 20px;
+        border-radius: 4px 4px 0 0;
+        border: 1px solid #B6B9BE;
+        border-bottom: none;
+        background: #fff;
+    }
+        .business-brief .business-logo img {
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+        .business-brief .business-logo .business-account {
+            display: block; 
+            width: 147px; 
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .business-brief .business-logo .business-account-value {
+            font-size: 14px;
+            font-weight: 700; 
+        }
+    /* -- .商户名称 -- */
+    .business-brief .business-name {
+        padding: 15px 0 15px 20px;
+        background: #FAFAFA;
+        border: 1px solid #B6B9BE;
+        border-top: 1px dashed #B6B9BE;
+        color: #999999;
+        border-radius: 0 0 4px 4px;
+    }
+        .business-brief .business-name a {
+            font-size: 14px;
+        }
+        .business-brief .business-name .hotline {
+            margin: 10px 0 0;
+        }
+
+/* -- 商户信息 -- */
+.business-info {
+    position: relative;
+    padding: 0 0 0 220px;
+    background: -webkit-gradient(linear, left top, left bottom, from(#F8F8F8), to(#F2F2F2));
+    background: -moz-linear-gradient(top, #F8F8F8, #F2F2F2);
+    background:-o-linear-gradient(top, #F8F8F8, #F2F2F2);
+    background: linear-gradient(top, #F8F8F8, #F2F2F2);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#F8F8F8', endColorstr='#F2F2F2');
+    background-color: #F2F2F2;
+    border: 1px solid #E6E6E6;
+}
+    /* -- 商户介绍 -- */
+    .business-info .business-info-container {
+        padding: 18px 10px 40px 0;
+        color: #808080;
+    }
+        .business-info .business-info-content {
+            overflow: hidden; 
+            height: 36px; 
+        }
+    /* -- 按钮 -- */
+    .business-info .unbind {
+        position: absolute;
+        top: 58px;
+        right: 10px;
+    }
+        .business-info .unbind a {
+            color: #808080;
+            font-weight: 400;
+            padding: 0 9px 0;
+            height: 19px;
+            line-height: 19px;
+        }
+
+/* -- 商户属性 -- */
+.business-attribute {
+    padding: 0 0 20px 220px;
+    background: #FFFFFF;
+    border-top: 3px solid #4B90B6;
+}
+    /* -- 属性列表 -- */
+    .business-attribute .attribute-list {
+        overflow: hidden;
+        zoom: 1;
+        position: relative;
+        margin: 0 10px 0 0;
+        width: 520px;
+        height: 84px;
+        border-bottom: 1px dashed #D9D9D9;
+    }
+        /* -- 属性icon -- */
+        .business-attribute .attribute-list .attribute-icon {
+            position: absolute;
+            top: 25px;
+            left: 0;
+        }
+        /* -- 属性名称 -- */
+        .business-attribute .attribute-list .attribute-name {
+            overflow: hidden;
+            position: absolute;
+            top: 33px;
+            left: 50px;
+            width: 120px;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            font-size: 14px;
+            font-weight: 700;
+        }
+        /* -- 属性值 -- */
+        .business-attribute .attribute-list .attribute-value {
+            position: absolute;
+            top: 33px;
+            left: 175px;
+            font-size: 14px;
+            font-weight: 700;
+            color: #FF6600;
+        }
+            .business-attribute .attribute-list .attribute-value span {
+                font-size: 12px;
+                font-weight: 400;
+                color: #666666;
+            }
+
+        /* -- 属性应用（运营后台配置连接） -- */
+        .business-attribute .attribute-list .attribute-app {
+            position: absolute;
+            top: 37px;
+            right: 0px;
+            text-align: right;
+            color: #999999;
+        }
+            .business-attribute .attribute-list .attribute-app a.first,
+            .business-attribute .attribute-list .attribute-app a:first-child {
+                border-left: none;
+            }
+            .business-attribute .attribute-list .attribute-app a {
+                border-left: 1px solid #CCCCCC;
+                padding: 0 9px 0 8px; 
+            }
+            .business-attribute .attribute-list .attribute-app a.ui-button {
+                vertical-align: -5px;
+                color: #595959;
+            }
+/*! endblock benefitprod/asset/1.1.2/css/asset-provider-detail-debug.css */
+
+/* -- 银行卡详情 -- */
+
+/*! block benefitprod/asset/1.1.2/css/bank-bind-detail-debug.css */
+/* bank-bind 银行卡详情 */
+
+@charset "utf-8";
+
+/* -- 绝对定位 logo -- */
+.bank-bind-brief {
+    width: 231px;
+    position: absolute;
+    z-index: 100;
+    top: 15px;
+    left: 16px;
+    border: 3px solid rgba(175, 178, 183, 0.25);
+    border-radius: 7px;
+}
+    /* -- .商户logo -- */
+    .bank-bind-brief .bank-bind-logo {
+        position: relative;
+        padding: 10px 0 0 15px;
+        border-radius: 4px 4px 0 0;
+        border: 1px solid #B6B9BE;
+        border-bottom: none;
+        background: #fff;
+    }
+        .bank-bind-brief .bank-bind-logo img {
+            display: block;
+        }
+        .bank-bind-brief .bank-bind-logo .card-type {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            overflow: hidden; 
+            width: 49px;
+            height: 18px;
+            text-indent: -9999px;
+        }
+        .bank-bind-brief .bank-bind-logo .card-type-DC {
+            background: url(https://i.alipayobjects.com/e/201305/MbrAtHLGP.png) no-repeat left top; 
+        }
+        .bank-bind-brief .bank-bind-logo .card-type-CC,
+        .bank-bind-brief .bank-bind-logo .card-type-SCC {
+            background: url(https://i.alipayobjects.com/e/201305/MbrAtHLGP.png) no-repeat left -18px; 
+        }
+        .bank-bind-brief .bank-bind-logo .bank-bind-account {
+            font-size: 20px;
+        }
+
+    /* -- .银行电话 -- */
+    .bank-bind-brief .bank-bind-name {
+        padding: 7px 5px 7px 15px;
+        background: #FAFAFA;
+        border: 1px solid #B6B9BE;
+        border-top: 1px dashed #B6B9BE;
+        color: #999999;
+        border-radius: 0 0 4px 4px;
+    }
+/* -- 商户信息 -- */
+.bank-bind-info {
+    position: relative;
+    padding: 0 0 0 220px;
+    background: -webkit-gradient(linear, left top, left bottom, from(#F8F8F8), to(#F2F2F2));
+    background: -moz-linear-gradient(top, #F8F8F8, #F2F2F2);
+    background:-o-linear-gradient(top, #F8F8F8, #F2F2F2);
+    background: linear-gradient(top, #F8F8F8, #F2F2F2);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#F8F8F8', endColorstr='#F2F2F2');
+    background-color: #F2F2F2;
+    border: 1px solid #E6E6E6;
+}
+    /* -- 商户介绍 -- */
+    .bank-bind-info .bank-bind-info-content {
+        height: 30px;
+        padding: 18px 0 40px;
+        color: #808080;
+    }
+    /* -- 按钮 -- */
+    .bank-bind-info .unbind {
+        position: absolute;
+        top: 58px;
+        right: 10px;
+    }
+        .bank-bind-info .unbind a {
+            color: #808080;
+            font-weight: 400;
+            padding: 0 9px 0;
+            height: 19px;
+            line-height: 19px;
+        }
+
+/* -- 商户属性 -- */
+.bank-bind-attribute {
+    padding: 45px 20px 30px 20px;
+    background: #FFFFFF;
+    border-top: 3px solid #4B90B6;
+}
+    /* -- 属性列表 -- */
+    .bank-bind-attribute .attribute-list {
+        overflow: hidden;
+        _overflow: inherit;
+        zoom: 1;
+        position: relative;
+        _height: 1px;
+        padding: 42px 0;
+        border-bottom: 1px dashed #D9D9D9;
+    }
+        /* -- 属性icon -- */
+        .bank-bind-attribute .attribute-list .attribute-icon {
+            position: absolute;
+            top: 25px;
+            left: 0;
+        }
+        /* -- 属性名称 -- */
+        .bank-bind-attribute .attribute-list .attribute-name {
+            position: absolute;
+            top: 33px;
+            left: 50px;
+            font-size: 14px;
+            font-weight: 700;
+        }
+        /* -- 属性值 -- */
+        .bank-bind-attribute .attribute-list .attribute-value {
+            position: absolute;
+            top: 32px;
+            *top: 35px;
+            left: 168px;
+            font-size: 14px;
+            font-weight: 700;
+            color: #FF6600;
+        }
+        .bank-bind-attribute .attribute-list .attribute-value span {
+            font-size: 12px;
+            font-weight: 400;
+            color: #666666;
+        }
+
+        /* -- 属性应用（运营后台配置连接） -- */
+        .bank-bind-attribute .attribute-list .attribute-app {
+            position: absolute;
+            top: 34px;
+            right: 0px;
+            text-align: right;
+            color: #999999;
+        }
+            .bank-bind-attribute .attribute-list .attribute-app a.first,
+            .bank-bind-attribute .attribute-list .attribute-app a:first-child {
+                border-left: none;
+            }
+            .bank-bind-attribute .attribute-list .attribute-app a {
+                border-left: 1px solid #CCCCCC;
+                padding: 0 9px 0 8px; 
+            }
+            .bank-bind-attribute .attribute-list .attribute-app a.ui-button {
+                vertical-align: -5px;
+                color: #595959;
+            }
+        /* -- 安全等级 -- */
+        .attribute-security-level {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+/*! endblock benefitprod/asset/1.1.2/css/bank-bind-detail-debug.css */
+
+/* -- 商户大全 - 商户分类 -- */
+
+/*! block benefitprod/asset/1.1.2/css/asset-nav-cate-debug.css */
+@charset "utf-8";
+
+/* -- 商户大全 - 分类 -- */
+.asset-nav-cate {
+    padding: 0 0 10px 10px;
+}
+    .asset-nav-cate ul {
+        overflow: hidden;
+        zoom: 1;
+    }
+        .asset-nav-cate ul li {
+            float: left;
+        }
+        .asset-nav-cate ul li.current {
+
+        }
+            .asset-nav-cate ul li.current a {
+                background: #0088CC;
+                color: #ffffff;
+            }
+            .asset-nav-cate ul li a {
+                display: block;
+                margin: 0 10px 0 0;
+                padding: 3px 10px 2px 10px;
+                border-radius: 3px;
+                -webkit-transition: all 0.15s ease-in;
+                transition: all 0.15s ease-in;
+            }
+            .asset-nav-cate ul li a:hover {
+                text-decoration: none;
+                background: #CCE7F5;
+                -webkit-transition: all 0.15s ease-in;
+                transition: all 0.15s ease-in;
+            }
+/*! endblock benefitprod/asset/1.1.2/css/asset-nav-cate-debug.css */
+
+/* -- 商户大全 - 商户列表 -- */
+
+/*! block benefitprod/asset/1.1.2/css/asset-box-list-debug.css */
+@charset "utf-8";
+
+/* -- 商户大全 - 商户列表 -- */
+.asset-box-list {
+    overflow: hidden;
+    zoom: 1;
+    padding: 10px;
+}
+    .asset-box-list .asset-box {
+        float: left;
+        overflow: hidden; 
+        width: 220px;
+        height: 175px; 
+        padding: 10px;
+        border: 1px solid #D9D9D9;
+        border-color: #FFFFFF #D9D9D9 #D9D9D9 #FFFFFF;
+    }
+    .asset-box-list .asset-box:nth-of-type(3n) {
+        border-right: none;
+    }
+    .asset-box-list .asset-box:last-of-type {
+        1border-right: none;
+    }
+    .asset-box-list .asset-box-hover {
+        position: relative;
+        z-index: 10;
+        border: 1px solid #D9D9D9;
+        outline: 3px solid #F2F2F2;
+    }
+        /* -- 商户logo -- */
+        .asset-box-list .asset-box .asset-box-logo {
+            height: 40px; 
+            margin: 0 0 10px 0;
+        }
+        .asset-box-list .asset-box .asset-box-logo img {
+            width: 135px;
+            height: 40px;
+            display: block;
+        }
+        /* -- 商户名称 -- */
+        .asset-box-list .asset-box .asset-box-name {
+            overflow: hidden;
+            width: 220px;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            margin: 0 0 10px 0;
+            color: #666666;
+        }
+        /* -- 商户信息 -- */
+        .asset-box-list .asset-box .asset-box-info {
+            overflow: hidden;
+            zoom: 1; 
+            width: 220px;
+            height: 36px;
+            margin: 0 0 15px 0;
+            color: #999999;
+        }
+        /* -- 商户添加 -- */
+        .asset-box-list .asset-box .asset-box-add {
+            overflow: hidden;
+            zoom: 1;
+            height: 45px; 
+        }
+            .asset-box-list .asset-box .asset-box-add a {
+                display: block;
+                float: left;
+                outline: none;
+            }
+            .asset-box-list .asset-box .asset-box-add a:hover {
+                text-decoration: none;
+            }
+                .asset-box-list .asset-box .asset-box-add a .iconfont {
+                    display: block;
+                    width: 40px;
+                    height: 40px;
+                    background: #EFF0F1;
+                    border-radius: 40px;
+                    text-align: center;
+                    line-height: 39px;
+                    font-size: 16px;
+                    cursor: pointer;
+                    color: #999999; 
+                }
+            .asset-box-list .asset-box .asset-box-add a.asset-box-add-text {
+                display: none ;
+                margin: 10px 0 0 10px;
+            }
+            .asset-box-list .asset-box-hover .asset-box-add a.asset-box-add-text {
+                display: block;
+            }
+/*! endblock benefitprod/asset/1.1.2/css/asset-box-list-debug.css */
+
+/* -- 银行卡频道 - 银行卡列表 -- */
+
+/*! block benefitprod/asset/1.1.2/css/card-box-list-debug.css */
+@charset "utf-8";
+
+/* -- 银行卡列表 -- */
+.card-box-list {
+    overflow: hidden;
+    zoom: 1;
+    padding: 2px 0 0 2px;
+}
+    .card-box-list .card-box {
+        float: left;
+        overflow: hidden;
+        width: 230px;
+        height: 160px;
+        margin: 0 17px 20px 0;
+        background: #EFF0F1;
+        border-radius: 4px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        _cursor: hand;
+        border: 1px solid #DDDDDD;
+    }
+    .card-box-list .card-box-hover { }
+        .card-box-list .card-box:hover .card-box-name,
+        .card-box-list .card-box-hover .card-box-name {
+            zoom: 1;
+            *overflow: visible; /* for a ie6/7 bug http://blog.csdn.net/jyy_12/article/details/6636099 */
+            background: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(#E6E8EB));
+            background: -moz-linear-gradient(top, #FFFFFF, #E6E8EB);
+            background:-o-linear-gradient(top, #FFFFFF, #E6E8EB);
+            background: linear-gradient(top, #FFFFFF, #E6E8EB);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFF', endColorstr='#E6E8EB');
+            background-color: #FFFFFF;
+            color: #666666;
+        }
+        .card-box-list .card-box .card-box-name {
+            border-radius: 4px 4px 0 0;
+            height: 46px;
+            position: relative;
+        }
+            .card-box-name .bank-logo {
+                position: absolute;
+                top: 13px;
+                left: 12px;
+            }
+            .card-box-name .bank-name {
+                position: absolute;
+                top: 12px;
+                left: 33px;
+                overflow: hidden;
+                width: 84px;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+            .card-box-name .bank-num4 {
+                position: absolute;
+                top: 12px;
+                right: 60px;
+            }
+            /* -- 借记卡，贷记卡，准贷记卡 -- */
+            .card-box-name .card-type-DC,
+            .card-box-name .card-type-CC,
+            .card-box-name .card-type-SCC {
+                position: absolute;
+                top: 12px;
+                right: 5px;
+                overflow: hidden; 
+                width: 49px;
+                height: 18px;
+                text-indent: -9999px;
+            }
+            .card-box-name .card-type-DC{
+                background: url(https://i.alipayobjects.com/e/201305/MbrAtHLGP.png) no-repeat left top; 
+            }
+            .card-box-name .card-type-CC,
+            .card-box-name .card-type-SCC {
+                background: url(https://i.alipayobjects.com/e/201305/MbrAtHLGP.png) no-repeat left -18px; 
+            }
+        .card-box-list .card-box .card-box-express {
+            height: 37px;
+            margin: 0 0 15px 0;
+            background: #CFD2D4;
+            border-top: 1px solid #ABADAF;
+        }
+            .card-box-list .card-box .express-status {
+                float: left;
+                padding: 9px 0 0 10px;
+            }
+            .card-box-list .card-box .express-status .asset-icon {
+                vertical-align: -2px;
+                margin-right: 10px;
+            }
+            .card-box-list .card-box .express-else {
+                float: right;
+                padding: 9px 10px 0 0;
+            }
+        .card-box-list .card-box .card-detail {
+            color: #676d70;
+        }
+        .card-box-list .card-box .card-detail .card-detail-list {
+            overflow-x: hidden;
+            zoom: 1;
+            padding: 4px 10px;
+        }
+        .card-box-list .card-box .card-detail .card-detail-list-first {
+            margin: 0 0 15px 0;
+            height: 19px;
+            padding: 9px 10px 9px 10px;
+            background: #CFD2D4;
+            border-top: 1px solid #ABADAF;
+        }
+            .card-box-list .card-box .card-detail .card-detail-list .card-detail-value {
+                float: left;
+                overflow: hidden;
+                width: 135px;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+                .card-box-list .card-box .card-detail .card-detail-list .card-detail-value strong {
+                    font-weight: 400;
+                }
+            .card-box-list .card-box .card-detail .card-detail-list .card-detail-app {
+                float: right;
+                overflow: hidden;
+                width: 74px;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                text-align: right;
+            }
+/*! endblock benefitprod/asset/1.1.2/css/card-box-list-debug.css */
+
+body,button,input,select,textarea {
+    font:12px/1.5 tahoma,arial,\5b8b\4f53;
+    -webkit-text-size-adjust: none;
+}
+
+body {
+    background: #EFF0F1;
+    color: #4D4D4D;
+}
+.ui-container {
+    width: 990px;
+    margin: auto;
+    background: #EFF0F1;
+}
+.ui-footer-copyright .server {
+    color: #EFF0F1;
+}
+/* ----------------------------------- link -- */
+a {
+    color: #0088CC;
+}
+a:hover,
+a:active {
+    color: #0088CC;
+    text-decoration: underline; 
+}
+
+a.ui-button-lorange:link,
+a.ui-button-lorange:visited,
+a.ui-button-morange:link,
+a.ui-button-morange:visited,
+a.ui-button-sorange:link,
+a.ui-button-sorange:visited {
+    color: #FFFFFF;
+    margin: 20px 0 0 85px;
+}
+
+/* ----------------------------------- reset 模块 -- */
+/* -- ui-grid-row -- */
+.ui-grid-row {
+    overflow-y: hidden;
+}
+.ui-grid-19 {
+    margin-bottom: 0;
+}
+
+/* -- ui-list -- */
+.ui-list {
+    padding: 5px; 
+}
+
+/* -- ui-form-item -- */
+.ui-form-item {
+    padding: 0 5px 20px 360px;
+}
+    .ui-form-item .ui-label {
+        margin-left: -370px;
+        width: 360px;
+    }
+    .ui-form-item .ui-input-lorange {
+        width: 260px;
+        height: 22px;
+        font-size: 18px;
+    }
+
+.ui-box {
+    margin: 0 0 10px 0;
+}
+    .ui-box .ui-box-head {
+    }
+        .ui-box .ui-box-head .ui-box-head-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #666666;
+        }
+    .ui-box .ui-box-container {
+    }
+
+/* -- ui-tiptext-container -- */
+.ui-tiptext-container {
+    position: relative;
+    margin: 0 0 10px 0; 
+}
+    .ui-tiptext-container .ui-tiptext {
+        padding: 0 10px 0 0;
+    }
+
+/* ============================================================================ 页面 == */
+/* -- 表单内容 -- */
+.main-form {
+    min-height: 300px;
+    padding: 60px 9px 9px 9px;
+    background: #fff;
+    border: 1px solid #E6E6E6;
+}
+/* -- 主内容 -- */
+.main {
+    position: relative;
+}
+/* -- 侧边栏 -- */
+.sidebar {
+    padding: 9px;
+    background: #fff;
+    border: 1px solid #E6E6E6;
+}
+
+/* -- 实线边框 -- */
+.asset-solid {
+    border: 1px solid #E6E6E6;
+}
+
+/* ----------------------------------- inputZoom 组件 -- */
+.ui-inputZoom {
+    display: block;
+    float: left;
+    background-color: #FFFDCA;
+    border: 1px solid #FACF66;
+    color: #F73200;
+    font-size: 26px;
+    overflow: hidden;
+    padding: 4px 8px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-family: Microsoft YaHei, SimHei;
+    font-weight: 700;
+}
+
+/* ----------------------------------- xbox 组件 -- */
+.asset-xbox-title {
+    height:45px;
+    font-size:16px;
+    font-family:'微软雅黑', '黑体', Arial;
+    line-height:46px;
+    border-bottom:1px solid #E1E1E1;
+    color:#4d4d4d;
+    text-indent: 20px;
+    background: -webkit-gradient(linear, left top, left bottom, from(#fcfcfc), to(#f9f9f9));
+    background: -moz-linear-gradient(top, #fcfcfc, #f9f9f9);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fcfcfc', endColorstr='#f9f9f9');
+    background:-o-linear-gradient(top, #fcfcfc, #f9f9f9);
+    background: linear-gradient(top, #fcfcfc, #f9f9f9);
+}
+.asset-xbox-close {
+    color: #999;
+    cursor: pointer;
+    display: block;
+    font-family: tahoma;
+    font-size: 24px;
+    font-weight: bold;
+    height: 18px;
+    line-height: 14px;
+    position: absolute;
+    right: 16px;
+    text-decoration: none;
+    top: 12px;
+    z-index: 10;
+}
+.asset-xbox-close:hover {
+    color: #666;
+    text-shadow: 0 0 2px #aaa;
+}

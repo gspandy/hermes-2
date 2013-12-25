@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jee="http://www.springframework.org/schema/jee"
+       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+	    http://www.springframework.org/schema/tx 
+	    http://www.springframework.org/schema/tx/spring-tx-3.0.xsd 
+	    http://www.springframework.org/schema/jee 
+	    http://www.springframework.org/schema/jee/spring-jee-3.0.xsd 
+	    http://www.springframework.org/schema/context 
+	    http://www.springframework.org/schema/context/spring-context-3.0.xsd
+	    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd"
+       default-lazy-init="false">
+
+
+    <!-- 启动触发器的配置开始 -->
+    <bean name="startQuertz" lazy-init="false" autowire="no"
+          class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers">
+            <list>
+                <ref bean="cashByTimeTrigger"/>
+                <ref bean="cashByZeroTrigger"/>
+                <ref bean="cashByAmountTrigger"/>
+            </list>
+        </property>
+    </bean>
+    <!-- 启动触发器的配置结束 -->
+
+    <!-- 定时提现 （每天1:00）-->
+    <bean id="cashByTimeTrigger"
+          class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <ref bean="cashByTimeDetail"/>
+        </property>
+        <property name="cronExpression">
+            <value>${job.cash.time.cron}</value>
+        </property>
+    </bean>
+    <bean id="cashByTimeDetail"
+          class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject">
+            <ref bean="cashByTime"/>
+        </property>
+        <property name="targetMethod">
+            <value>work</value>
+        </property>
+        <property name="arguments">
+            <value>1</value>
+        </property>
+    </bean>
+
+
+    <!-- 零点提现（每天0:00） -->
+    <bean id="cashByZeroTrigger"
+          class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <ref bean="cashByZeroDetail"/>
+        </property>
+        <property name="cronExpression">
+            <value>${job.cash.zero.cron}</value>
+        </property>
+    </bean>
+    <bean id="cashByZeroDetail"
+          class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject">
+            <ref bean="cashByTime"/>
+        </property>
+        <property name="targetMethod">
+            <value>work</value>
+        </property>
+        <property name="arguments">
+            <value>3</value>
+        </property>
+    </bean>
+
+    <!-- 定额提现(每分钟执行一次) -->
+    <bean id="cashByAmountTrigger"
+          class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <ref bean="cashByAmountDetail"/>
+        </property>
+        <property name="cronExpression">
+            <value>${job.cash.amount.cron}</value>
+        </property>
+    </bean>
+    <bean id="cashByAmountDetail"
+          class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject">
+            <ref bean="cashByTime"/>
+        </property>
+        <property name="targetMethod">
+            <value>work</value>
+        </property>
+        <property name="arguments">
+            <value>2</value>
+        </property>
+    </bean>
+    <bean id="cashByTime" class="com.hermes.app.job.CashByTimeJob"/>
+</beans>

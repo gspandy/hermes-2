@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hermes.app.persistence.pay.user.UserMapper">
+
+    <select id="selectByName" parameterType="String"
+            resultType="user">
+        SELECT a.nickname username,
+                a.logpsw password,
+                a.psw psw,
+                a.usercode usercode,
+                a.tempflag tempflag,
+                a.errlognum errlognum,
+                b.pusercode pusercode,
+                b.ctype ctype,
+                a.userstat userStat,
+                a.errlogtime errlogtime,
+                a.lasttime lasttime
+          FROM saleuser a,tb_pay_userrela b
+         WHERE a.usercode = b.cusercode(+)
+           AND a.nickname = #{username}
+    </select>
+
+    <update id="updateErrorNum" parameterType="user">
+        UPDATE saleuser
+           SET errlognum = #{errlognum},
+               errlogtime = sysdate
+         WHERE usercode = #{usercode}
+    </update>
+
+    <update id="updateLoginTime" parameterType="user">
+        UPDATE saleuser
+           SET errlognum = #{errlognum},
+               lasttime = sysdate,
+               lastip = #{lastip}
+         WHERE usercode = #{usercode}
+    </update>
+
+    <select id="selectStatsByCode" parameterType="user"
+            resultType="user">
+        <![CDATA[
+
+        select ordercount, totalmoney, succordercount, succtotalmoney
+          from (select count(t1.transactionid) as ordercount,
+                          sum(t1.ordermoney) as totalmoney
+                   from TB_PayOrderInfo t1
+                  where t1.usercode = #{usercode}
+                    and t1.ordertime >= to_date(to_char(sysdate, 'yyyy/MM/dd'), 'yyyy/MM/dd')
+                    and t1.ordertime <= to_date(to_char(sysdate + 1, 'yyyy/MM/dd'), 'yyyy/MM/dd')
+        ) d1,
+                (select count(t2.transactionid) as succordercount,
+                         sum(t2.ordermoney) as succtotalmoney
+                   from TB_PayOrderInfo t2
+                  where t2.dealstat = 1
+                    and t2.usercode = #{usercode}
+                    and t2.ordertime >= to_date(to_char(sysdate, 'yyyy/MM/dd'), 'yyyy/MM/dd')
+                    and t2.ordertime <= to_date(to_char(sysdate + 1, 'yyyy/MM/dd'), 'yyyy/MM/dd')
+        ) d2
+
+        ]]>
+    </select>
+
+    <select id="selectByCode" parameterType="String"
+            resultType="user">
+        SELECT t.*, ceil(sysdate - t.logpwdtime) logdays, ceil(sysdate - t.buspwdtime) busdays
+          FROM saleuser t
+         WHERE t.usercode = #{usercode}
+    </select>
+
+    <select id="selectAddByCode" parameterType="String"
+            resultType="userAdd">
+        SELECT t.*
+          FROM tb_pay_useraddedinfo t
+         WHERE t.usercode = #{usercode}
+    </select>
+
+    <update id="updateUser" parameterType="user">
+        update saleuser
+        <set>
+            usercell = #{usercell},
+            email = #{email},
+            usertel = #{usertel},
+            qq = #{qq}
+        </set>
+        <where>
+            usercode = #{usercode}
+        </where>
+    </update>
+
+    <select id="selectSalesUserByName" parameterType="String"
+            resultType="int">
+        SELECT count(*)
+          FROM saleuser
+         WHERE nickname = #{username}
+    </select>
+
+    <select id="selectB2CUserByName" parameterType="String"
+            resultType="int">
+        SELECT count(*)
+          FROM reguser
+         WHERE nickname = #{username}
+    </select>
+
+    <insert id="insertSalesUser" parameterType="com.hermes.app.domain.user.User">
+        <selectKey resultType="java.lang.String" keyProperty="usercode" order="BEFORE">
+            SELECT CONCAT('A',salereg_seq.nextval) AS usercode FROM dual
+        </selectKey>
+        insert into saleuser
+        (
+        usercode,nickname,logpsw,username,prvcIn,
+        cityIn,country,usercell,
+        lastip,belongto,shoplevel,idno,email,
+        usersourceflag,merpayflag,usertag,jyname,opendeflev,paypws
+        )
+        values
+        (
+        #{usercode},#{username},#{password},#{userRealName},#{prvcin},
+        #{cityin},#{country},#{usercell},
+        #{lastip} ,#{belongTo},#{shopLevel},#{identityCard},#{email},
+        #{userSourceFlag},#{merpayflag},#{userTag},#{companyName},#{opendeflev},#{paypws}
+        )
+    </insert>
+
+    <insert id="insertPayUserAddedInfo" parameterType="java.util.HashMap">
+        <selectKey resultType="java.lang.String" keyProperty="flowid"  order="BEFORE">
+            select sys_guid() as flowid from dual
+        </selectKey>
+        insert into tb_pay_useraddedinfo
+        (
+        flowid, usercode, paytype,company
+        )
+        values
+        (
+        #{flowid},#{usercode},#{paytype},#{company}
+        )
+    </insert>
+    <insert id="insertUserScoreInfo" parameterType="java.util.HashMap">
+        <selectKey resultType="java.lang.String" keyProperty="FlowId"  order="BEFORE">
+            select sys_guid() as FlowId from dual
+        </selectKey>
+        insert into TB_Mall_MemGetScore
+        (
+        FlowId,Membercode,Membername,Memberloginid,Getscore,
+        Wayid,Rulesid,Remarkinfo,Datastat,Sourceflowid,ipaddress
+        )
+        values
+        (
+        #{FlowId}, #{Membercode}, #{Membername},#{Memberloginid},#{Getscore},
+        #{Wayid},#{Rulesid},#{Remarkinfo},#{Datastat},#{Sourceflowid},#{ipaddress}
+        )
+    </insert>
+    <select id="selectIntegralRule" parameterType="String"
+            resultType="String">
+        SELECT integral
+          FROM integral_rules
+         WHERE rulesid = #{rulesid}
+    </select>
+    <insert id="insertSaleCount" parameterType="String">
+        insert into salecount
+        (
+        userid
+        )
+        values
+        (
+        #{usercode}
+        )
+    </insert>
+    <insert id="insertUserBuyInfo" parameterType="java.util.HashMap">
+        insert into user_buy_info
+        (
+        buynumber,userid,sumcash
+        )
+        values
+        (
+        #{buynumber},#{userid},#{sumcash}
+        )
+    </insert>
+</mapper>
+

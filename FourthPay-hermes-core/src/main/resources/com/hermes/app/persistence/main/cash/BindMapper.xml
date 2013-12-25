@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hermes.app.persistence.main.cash.BindMapper">
+    <sql id="bindColumns">
+           t.accountflowid,
+           t.bankcode,
+           t.bankname,
+           t.username,
+           t.accountno,
+           t.accshortname,
+           t.accountusername,
+           t.idcardno,
+           t.datastat,
+           t.remarkinfo
+    </sql>
+    <select id="selectBinds" resultType="bind">
+        SELECT <include refid="bindColumns"/>
+        FROM tb_pay_useraccountinfo t
+        <where>
+            t.usercode = #{usercode}
+            <if test="datastat != null and datastat != '' ">
+                and t.datastat = #{datastat}
+            </if>
+            <if test="accountflowid != null and accountflowid != '' ">
+                and t.accountflowid = #{accountflowid}
+            </if>
+        </where>
+    </select>
+
+    <insert id="insertBind" parameterType="bind">
+        insert into TB_Pay_UserAccountInfo
+        (
+            accountflowid,
+            usercode,
+            username,
+            accounttype,
+            bankcode,
+            bankname,
+            accountusername,
+            accountno,
+            datastat,
+            accshortname,
+            remarkinfo
+        )
+        values
+        (
+            #{accountflowid},
+            #{usercode},
+            #{username},
+            #{accounttype},
+            #{bankcode},
+            #{bankname},
+            #{accountusername},
+            #{accountno},
+            #{datastat},
+            #{accshortname},
+            #{remarkinfo}
+        )
+    </insert>
+
+    <select id="selectBankCodes" resultType="hashmap">
+        <bind name="bankcode" value="_parameter" />
+        select bankcode, bankname, banktype
+          from tb_pay_cashbankinfo
+         <where>
+           choiceflag = '1'
+           <![CDATA[and banktype != '3']]>
+           <if test="bankcode != null and bankcode != '' ">
+               and bankcode = #{bankcode}
+           </if>
+         </where>
+         order by bankcode desc
+
+    </select>
+
+    <delete id="deleteBind" parameterType="bind">
+        DELETE FROM tb_pay_useraccountinfo WHERE accountflowid = #{accountflowid}
+    </delete>
+</mapper>

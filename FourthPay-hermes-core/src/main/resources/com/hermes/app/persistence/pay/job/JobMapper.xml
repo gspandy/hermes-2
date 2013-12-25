@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hermes.app.persistence.pay.job.JobMapper">
+
+    <select id="selectCashCfg" resultType="cashCfg">
+        <bind name="settleMode" value="_parameter"/>
+        SELECT *
+        FROM tb_pay_userautocash
+        <where>
+            datastatus = 1
+            <if test="settleMode != null and settleMode != '' ">AND settleMode=#{settleMode}</if>
+        </where>
+    </select>
+
+    <select id="selectYesterdayTotal" resultType="String">
+        SELECT nvl(SUM(amount), 0)
+          FROM tb_pay_accounttrack
+         WHERE createdtime BETWEEN trunc(SYSDATE - 1) AND
+               trunc(SYSDATE) - 1 / (24 * 60 * 60)
+           AND usercode = #{usercode}
+           AND tracksource NOT IN ('SOC', 'SOE')
+    </select>
+</mapper>
