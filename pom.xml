@@ -1,11 +1,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <!--<parent>-->
-        <!--<groupId>com.ofpay</groupId>-->
-        <!--<artifactId>of-parent</artifactId>-->
-        <!--<version>1.1.0-RELEASE</version>-->
-    <!--</parent>-->
 
     <groupId>com.ofpay</groupId>
     <artifactId>FourthPay-hermes</artifactId>
@@ -68,47 +63,12 @@
         <unitils.version>3.3</unitils.version>
         <cobarclient.version>1.0.3-update2</cobarclient.version>
         <logback.version>1.0.12</logback.version>
-
-        <svn.url>http://192.168.100.249/usvn/svn/4thpay-hermes/trunk/code/FourthPay-hermes/</svn.url>
         <dubbo.version>2.4.10</dubbo.version>
         <springframework.version>3.2.4.RELEASE</springframework.version>
         <unitils.version>3.3</unitils.version>
         <httpcomponents.version>4.2.4</httpcomponents.version>
         <sitemesh.version>2.4.2</sitemesh.version>
     </properties>
-
-    <scm>
-        <connection>scm:svn:${svn.url}</connection>
-        <developerConnection>scm:svn:${svn.url}</developerConnection>
-        <url>${svn.url}</url>
-    </scm>
-
-    <build>
-        <!--<plugins>-->
-            <!--<plugin>-->
-                <!--<groupId>org.apache.maven.plugins</groupId>-->
-                <!--<artifactId>maven-release-plugin</artifactId>-->
-                <!--<configuration>-->
-                    <!--<tagBase>http://192.168.100.249/usvn/svn/4thpay-hermes/tags/</tagBase>-->
-                    <!--<autoVersionSubmodules>true</autoVersionSubmodules>-->
-                    <!--<username>${svn.username}</username>-->
-                    <!--<password>${svn.password}</password>-->
-                <!--</configuration>-->
-            <!--</plugin>-->
-        <!--</plugins>-->
-    </build>
-
-
-    <repositories>
-        <repository>
-            <id>ofpay-public</id>
-            <name>intranet public groups</name>
-            <url>http://nexus.dev.ofpay.com/nexus/content/groups/public</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
 
     <dependencyManagement>
         <dependencies>
