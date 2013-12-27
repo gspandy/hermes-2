@@ -61,7 +61,7 @@ public class AccountController extends BaseController {
     @Value("${common.ip.search}")
     private String commonIpSearch;
     /**
-     * 测试
+     *
      * 账户中心
      *
      * @return
