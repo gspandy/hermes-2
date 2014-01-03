@@ -4,3 +4,9 @@ jdk:
   - openjdk6
 script:
   - mvn install -DskipTests=true
+
+deploy:
+  provider: openshift
+  user: "zjh459@gmail.com"
+  password: "zhangjia59" # can be encrypted
+  domain: "betahermes"
