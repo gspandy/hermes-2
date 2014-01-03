@@ -1,12 +1,15 @@
 language: java
 jdk:
-  - oraclejdk7
-  - openjdk6
+- oraclejdk7
+- openjdk6
 script:
-  - mvn install -DskipTests=true
-
+- mvn install -DskipTests=true
 deploy:
   provider: openshift
-  user: "zjh459@gmail.com"
-  password: "zhangjia59" # can be encrypted
-  domain: "betahermes"
+  user: zjh459@gmail.com
+  password:
+    secure: SZGM98xBfH6k788hFSQUZV1euqHSJTl7VsFFDB5uWoULmu3o3xdIs0JaWk36sIlJD1vOo0WzkkwxnTxdN30ThsitT/LL7YeO0L51yukTcRTYdwAdjAqfKsB7a6k31TDe6XgjdV+/aJkGCQ0ScVQQ8yUDUQFc7XsCqPuVEPmSuz8=
+  app: hermes
+  domain: betahermes
+  on:
+    repo: zjh459/hermes
