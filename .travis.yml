@@ -8,8 +8,8 @@ deploy:
   provider: openshift
   user: zjh459@gmail.com
   password:
-    secure: SZGM98xBfH6k788hFSQUZV1euqHSJTl7VsFFDB5uWoULmu3o3xdIs0JaWk36sIlJD1vOo0WzkkwxnTxdN30ThsitT/LL7YeO0L51yukTcRTYdwAdjAqfKsB7a6k31TDe6XgjdV+/aJkGCQ0ScVQQ8yUDUQFc7XsCqPuVEPmSuz8=
-  app: hermes
+    secure: zEcewku4SFw2LD+uRKMZnKmv04lKE9hMaov2UMLL4ltaXi2V9jIHbD4JG75gSdA1B+4ksDsfpjmizzKmfXw3zNaF/iNsEmKx/Y5b14nB0ttTdxDOvqeC5KFP8q2Yi6Kr1I2kFIA8MfWVrGvNaG/hNeaV8EeFOFDy4gOHFmSP0Nc=
+  app: test
   domain: betahermes
   on:
     repo: zjh459/hermes
