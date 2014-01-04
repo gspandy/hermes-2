@@ -8,6 +8,6 @@ deploy:
   provider: heroku
   api_key:
     secure: P1Kgi1Dn8/qGGzfcuj/K9z/PO/BA+jhbmXC77MpkaBXbPGWfzXHgvhV7iuF1o3A9hWNDnWwtLTP0KptOiomhHUoInRicZscf3W8EhpBbCKLmZPVceK97AZhrDPKAvrvzE0QKjAuj0pA2iyv06yLdCuxcme92OfIRiHs0JbuErjo=
-  app: hermes
+  app: ofhermes
   on:
     repo: zjh459/hermes
