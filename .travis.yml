@@ -5,11 +5,9 @@ jdk:
 script:
 - mvn install -DskipTests=true
 deploy:
-  provider: openshift
-  user: zjh459@gmail.com
-  password:
-    secure: zEcewku4SFw2LD+uRKMZnKmv04lKE9hMaov2UMLL4ltaXi2V9jIHbD4JG75gSdA1B+4ksDsfpjmizzKmfXw3zNaF/iNsEmKx/Y5b14nB0ttTdxDOvqeC5KFP8q2Yi6Kr1I2kFIA8MfWVrGvNaG/hNeaV8EeFOFDy4gOHFmSP0Nc=
-  app: test
-  domain: betahermes
+  provider: heroku
+  api_key:
+    secure: P1Kgi1Dn8/qGGzfcuj/K9z/PO/BA+jhbmXC77MpkaBXbPGWfzXHgvhV7iuF1o3A9hWNDnWwtLTP0KptOiomhHUoInRicZscf3W8EhpBbCKLmZPVceK97AZhrDPKAvrvzE0QKjAuj0pA2iyv06yLdCuxcme92OfIRiHs0JbuErjo=
+  app: hermes
   on:
     repo: zjh459/hermes
