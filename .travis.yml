@@ -5,9 +5,10 @@ jdk:
 script:
 - mvn install -DskipTests=true
 deploy:
-  provider: heroku
-  api_key:
-    secure: P1Kgi1Dn8/qGGzfcuj/K9z/PO/BA+jhbmXC77MpkaBXbPGWfzXHgvhV7iuF1o3A9hWNDnWwtLTP0KptOiomhHUoInRicZscf3W8EhpBbCKLmZPVceK97AZhrDPKAvrvzE0QKjAuj0pA2iyv06yLdCuxcme92OfIRiHs0JbuErjo=
-  app: ofhermes
+  provider: appfog
+  email: zjh459@gmail.com
+  password:
+    secure: wTfkxeev72v0LTnQmA8P4I+Od+G9h4noOYK6qFEou/vCw8tVaFoGPCX8T3mpue1hmQbaHbaJ0CytNdTjmQaSfOFdCPgeWX1JJePlTw33+nyu+hqT91VoQL12WvS/mFhKWJ1npQVQFfNwAreObt7+b3j/4E3zg3B+vRFyzrf+T6w=
+  app: hemes
   on:
     repo: zjh459/hermes
