@@ -2,6 +2,8 @@ language: java
 jdk:
 - oraclejdk7
 - openjdk6
+script:
+- mvn install -DskipTests=true
 after_success:
 - cp target/*.war .
 deploy:
