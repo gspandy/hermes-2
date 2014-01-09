@@ -14,3 +14,4 @@ deploy:
   app: oftest
   on:
     repo: zjh459/hermes
+  skip_cleanup: true
