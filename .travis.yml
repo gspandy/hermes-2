@@ -2,13 +2,13 @@ language: java
 jdk:
 - oraclejdk7
 - openjdk6
-script:
-- mvn install -DskipTests=true
+after_success:
+- cp target/*.war .
 deploy:
   provider: appfog
   email: zjh459@gmail.com
   password:
-    secure: wTfkxeev72v0LTnQmA8P4I+Od+G9h4noOYK6qFEou/vCw8tVaFoGPCX8T3mpue1hmQbaHbaJ0CytNdTjmQaSfOFdCPgeWX1JJePlTw33+nyu+hqT91VoQL12WvS/mFhKWJ1npQVQFfNwAreObt7+b3j/4E3zg3B+vRFyzrf+T6w=
-  app: hemes
+    secure: JzLiYKwaFhYlQ+QTGwve1hueTfqk5ZF11NH2jYwnLxkJ4KCM3cC61Y2oinb+9Ce1OvhTxAwHT6IikbakrkH0hovU6o38CAAyhZeX2hHj6ld7gU2mrWPdxirCEmc7sJxxYuRuUiKse4JSc6/v1OOrCoPAGB0h8feqZxCmJ3LrcIY=
+  app: oftest
   on:
     repo: zjh459/hermes
